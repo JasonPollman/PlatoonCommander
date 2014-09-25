@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{92B4C4CE-DB67-D1C8-7F42-E70EBDB4A8FA}") = "PlatoonCommander", "Assembly-CSharp.csproj", "{236D5709-BE0B-3FB7-497F-A013C3FAA8BE}"
 EndProject
+Project("{92B4C4CE-DB67-D1C8-7F42-E70EBDB4A8FA}") = "PlatoonCommander", "Assembly-CSharp-Editor.csproj", "{3F84BB76-1B4B-588F-7168-7EE91A5EF0A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{236D5709-BE0B-3FB7-497F-A013C3FAA8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{236D5709-BE0B-3FB7-497F-A013C3FAA8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{236D5709-BE0B-3FB7-497F-A013C3FAA8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F84BB76-1B4B-588F-7168-7EE91A5EF0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F84BB76-1B4B-588F-7168-7EE91A5EF0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F84BB76-1B4B-588F-7168-7EE91A5EF0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F84BB76-1B4B-588F-7168-7EE91A5EF0A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-					GlobalSection(MonoDevelopProperties) = preSolution
+																																						GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
