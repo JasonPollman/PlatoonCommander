@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LevelOptions.cs" />
+     <Compile Include="Assets\GameOver\LevelOptions.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -174,10 +174,10 @@
      <Compile Include="Assets\Scripts\LevelOptions.cs" />
      <Compile Include="Assets\Scripts\QuitGameScript.cs" />
      <Compile Include="Assets\Scripts\StartGame.cs" />
+     <Compile Include="Assets\Scripts\TimerTint.cs" />
      <Compile Include="Assets\Scripts\TitleMenuQuitAction.cs" />
      <Compile Include="Assets\Scripts\TitleStartAction.cs" />
      <Compile Include="Assets\Scripts\UserData.cs" />
-     <Compile Include="Assets\TimerTint.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
