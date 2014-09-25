@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LevelOptions.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -164,13 +165,19 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITiledSprite.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+     <Compile Include="Assets\Scripts\ChangeTimerLabel.cs" />
      <Compile Include="Assets\Scripts\Cursor.cs" />
+     <Compile Include="Assets\Scripts\GameTimer15Min.cs" />
      <Compile Include="Assets\Scripts\GotoLevel1.cs" />
      <Compile Include="Assets\Scripts\GotoTitleMenu.cs" />
+     <Compile Include="Assets\Scripts\LevelObject.cs" />
+     <Compile Include="Assets\Scripts\LevelOptions.cs" />
      <Compile Include="Assets\Scripts\QuitGameScript.cs" />
      <Compile Include="Assets\Scripts\StartGame.cs" />
      <Compile Include="Assets\Scripts\TitleMenuQuitAction.cs" />
      <Compile Include="Assets\Scripts\TitleStartAction.cs" />
+     <Compile Include="Assets\Scripts\UserData.cs" />
+     <Compile Include="Assets\TimerTint.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
