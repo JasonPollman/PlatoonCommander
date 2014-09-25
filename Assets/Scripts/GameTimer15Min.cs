@@ -25,11 +25,15 @@ public class GameTimer15Min : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(_TimeRemaining > 0) _TimeRemaining -= Time.deltaTime;
+		if(GameVars.PlayerReady) {
+			if(_TimeRemaining > 0) _TimeRemaining -= Time.deltaTime;
 
-		if(_TimeRemaining <= 0){
-			Application.LoadLevel ("GameOver");
-			UserData.UserCurrentLevel = 1;
+			if(_TimeRemaining <= 0){
+				GameVars.PlayerReady = false;
+				Application.LoadLevel ("GameOver");
+				UserData.UserCurrentLevel = 1;
+			}
+
 		}
 	}
 }

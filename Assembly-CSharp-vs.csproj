@@ -168,11 +168,13 @@
      <Compile Include="Assets\Scripts\ChangeTimerLabel.cs" />
      <Compile Include="Assets\Scripts\Cursor.cs" />
      <Compile Include="Assets\Scripts\GameTimer15Min.cs" />
+     <Compile Include="Assets\Scripts\GameVars.cs" />
      <Compile Include="Assets\Scripts\GotoLevel1.cs" />
      <Compile Include="Assets\Scripts\GotoTitleMenu.cs" />
      <Compile Include="Assets\Scripts\LevelObject.cs" />
      <Compile Include="Assets\Scripts\LevelOptions.cs" />
      <Compile Include="Assets\Scripts\QuitGameScript.cs" />
+     <Compile Include="Assets\Scripts\ReadyClicked.cs" />
      <Compile Include="Assets\Scripts\StartGame.cs" />
      <Compile Include="Assets\Scripts\TimerTint.cs" />
      <Compile Include="Assets\Scripts\TitleMenuQuitAction.cs" />
