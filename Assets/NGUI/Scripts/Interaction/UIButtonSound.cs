@@ -21,6 +21,7 @@ public class UIButtonSound : MonoBehaviour
 		OnRelease,
 	}
 
+	public bool WaitUntilPlayerReady = false;
 	public AudioClip audioClip;
 	public Trigger trigger = Trigger.OnClick;
 	public float volume = 1f;
@@ -46,7 +47,9 @@ public class UIButtonSound : MonoBehaviour
 	{
 		if (enabled && trigger == Trigger.OnClick)
 		{
-			NGUITools.PlaySound(audioClip, volume, pitch);
+			if((WaitUntilPlayerReady && GameVars.PlayerReady) || !WaitUntilPlayerReady) {
+				NGUITools.PlaySound(audioClip, volume, pitch);
+			}
 		}
 	}
 }

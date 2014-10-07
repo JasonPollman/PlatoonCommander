@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="15" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="Terrian2" tilewidth="40" tileheight="40">
+  <image source="Terrian2.png" trans="ff00ff" width="640" height="320"/>
+ </tileset>
+ <tileset firstgid="129" name="Trees" tilewidth="40" tileheight="40">
+  <image source="Trees.png" trans="ff00ff" width="640" height="480"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA/CCQBDwQYzO4jxW2j7sMPBqv7Bmv4kRq39HRfIBI92NwXiEaT4k56uA2bXYPJfbjEB4P7cIHB7j4GLG4ZdR/13AXDAJV7NNg=
+  </data>
+ </layer>
+ <layer name="Road" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzzZmBg8B4ATCwYCLeR4kZnGmEXCt0FAyk0wEVAHEIl99Ei3oIIuI8Udw6U+4gFtEh7iUDsRSWzaJH+SE2r5XjkaVl+BCJhXPELSgvhDLgBrcs4St1H6zKPUvfRuswbLPELsieJgby8Tg/3JeMIV2JwGh3cRwpGtxsfAADPZJaI
+  </data>
+ </layer>
+ <layer name="Trees" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzdVe0JgCAQbfjaoDaoH01STVBNUG3RExSOQ83kzqAHjx6o13lfVpUearCxegJncFH4z5h5rgU7q1dwA3ey7vyn9yiJHhysPsATvMi685/eozRiMXL+u+8XcXwTo6c9uXUWA49Ryt6/Q3NWSMA3K6Th65XU+qOzgp+R6kGtmSNlV6tXpO3SfIS0Ae8JrVnK7dJ8hLQB74lS9UHzEdIG/P3MyWNK/3G7N29ZR1U=
+  </data>
+ </layer>
+ <layer name="Trees2" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztlFEKgDAMQ3t4vYGCB1DQWzo/CqGs6eZk+uGDYUskc5FORGSR9xnSGh1t7/khDlNaM/Q9MtNMWDaqrWlt0LPM0C86B9tbM8FsrJ/NzfbM9yL698xPM9Fnzg+1XM98S6h59+e71Mw7m5m7nhE1d2TJDDLP0vPdpWVmDik/X2/sXZ3TWB1prWBu1hs1r460VjA3642aV0fak6j3CQt1P9o=
+  </data>
+ </layer>
+</map>

@@ -11,11 +11,11 @@ public class TimerTint : MonoBehaviour {
 	void Update () {
 		UISprite timerTint = GameObject.Find("TimerTint").GetComponent<UISprite>();
 
-		if(GameTimer15Min.TimeRemaining <= Mathf.Ceil(GameTimer15Min.InitialTime / 3) &&
-		   GameTimer15Min.TimeRemaining > Mathf.Ceil(GameTimer15Min.InitialTime / 5)) {
+		if(GameTimer.TimeRemaining <= Mathf.Ceil(GameTimer.InitialTime / 3) &&
+		   GameTimer.TimeRemaining > Mathf.Ceil(GameTimer.InitialTime / 5)) {
 			timerTint.color = new Color (92, 70, 0, 0.5f);
 		}
-		else if(GameTimer15Min.TimeRemaining <= Mathf.Ceil(GameTimer15Min.InitialTime / 5)) {
+		else if(GameTimer.TimeRemaining <= Mathf.Ceil(GameTimer.InitialTime / 5)) {
 
 			timerTint.color = new Color (92, 0, 0, 1f);
 		}
