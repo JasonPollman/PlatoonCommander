@@ -40,7 +40,7 @@ public class LevelConfig : MonoBehaviour {
 
 		// Check to ensure that the bomber unit is alive, if deployed...
 
-		Debug.Log (GameVars.UnitTypes);
+		//Debug.Log (GameVars.UnitTypes);
 
 		// Update the number of remaining units on screen...
 		string temp = "";

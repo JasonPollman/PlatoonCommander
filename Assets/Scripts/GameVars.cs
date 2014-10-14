@@ -55,7 +55,7 @@ public class GameVars : MonoBehaviour {
 	public static Dictionary<string, List<Unit>> Squads = new Dictionary<string, List<Unit>> {
 		{ "alpha", new List<Unit>() },
 		{ "beta" , new List<Unit>() },
-		{ "omage", new List<Unit>() },
+		{ "omega", new List<Unit>() },
 	};
 
 	// General Patton Quotes

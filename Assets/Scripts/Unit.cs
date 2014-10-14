@@ -29,8 +29,7 @@ public class Unit {
 		if(GameVars.AllUnits.Count > 0) {
 			foreach (Unit x in GameVars.AllUnits) if(x.Type.Name == type) return x;
 		}
-
-		Debug.Log ("RETURNING NULL");
+		
 		return null;
 	}
 
