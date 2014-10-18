@@ -17,29 +17,30 @@ public class PathChanger : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 
+
 		var soldier = other.gameObject;
 		if (soldier.tag != "unit") return;
-
+		var speed = soldier.GetComponent<move> ().getSpeed ();
 		switch (dir) {
 		case direction.down:
 			soldier.transform.Rotate(0f, 0f, 0f);
 			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.rigidbody2D.velocity = new Vector2(0f, -0.05f);
+			soldier.rigidbody2D.velocity = new Vector2(0f, -1*speed);
 			break;
 		case direction.up:
 			soldier.transform.Rotate(0f, 0f, 0f);
 			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.rigidbody2D.velocity = new Vector2(0f, 0.05f);
+			soldier.rigidbody2D.velocity = new Vector2(0f, speed);
 			break;
 		case direction.left:
 			soldier.transform.Rotate(0f, 0f, 0f);
 			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.rigidbody2D.velocity = new Vector2(-0.05f, 0f);
+			soldier.rigidbody2D.velocity = new Vector2(-1*speed, 0f);
 			break;
 		case direction.right:
 			soldier.transform.Rotate(0f, 0f, 0f);
 			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.rigidbody2D.velocity = new Vector2(0.05f, 0f);
+			soldier.rigidbody2D.velocity = new Vector2(speed, 0f);
 			break;
 		}
 	}
