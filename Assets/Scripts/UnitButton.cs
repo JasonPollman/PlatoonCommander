@@ -50,24 +50,24 @@ public class UnitButton : MonoBehaviour {
 
 	void OnClick () {
 
-		string LastUnitType = GameVars.UnitTypeClicked.ToLower();
 		GameVars.UnitTypeClicked = UnitType.ToLower();
-
-		int LastUnitSpot = ThisUnitSpot;
 		ThisUnitSpot = GameVars.UnitNumberClicked;
 
 		bool addSuccess = false;
 
-		if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0 && LastUnitSpot != ThisUnitSpot) {
+		if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0 && GameVars.SpotFilled[ThisUnitSpot - 1] == null) {
+
 			addSuccess = GameVars.AddUnitToSquad(UnitType.ToLower(), GameVars.SquadClicked);
+			GameVars.SpotFilled[ThisUnitSpot - 1] = UnitType.ToLower();
 		}
-		else if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0 && LastUnitType.ToLower() != UnitType.ToLower()) {
-			GameVars.RemoveUnitFromSquad(LastUnitType.ToLower(), GameVars.SquadClicked);
+		else if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0) {
+			bool remSuccess = GameVars.RemoveUnitFromSquad(GameVars.SpotFilled[ThisUnitSpot - 1], GameVars.SquadClicked);
 			addSuccess = GameVars.AddUnitToSquad(UnitType.ToLower(), GameVars.SquadClicked);
 
 		}
 
-		if(addSuccess) {
+		if(addSuccess) { // Change the + Button to the Unit Type
+
 			UIImageButton AddTileButton = GameObject.Find("AddUnit" + GameVars.UnitNumberClicked.ToString()).GetComponent<UIImageButton>();
 			AddTileButton.normalSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
 			UISprite AddTile = GameObject.Find("AddUnit" + GameVars.UnitNumberClicked.ToString() + "/Background").GetComponent<UISprite>();
@@ -76,15 +76,14 @@ public class UnitButton : MonoBehaviour {
 			AddTile.spriteName = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
 			AddTile.MakePixelPerfect();
 			AddTile.MarkAsChanged();
-			Debug.Log (AddTile.spriteName);
 		}
 
+		// Close the Add Unit Menu...
 		NGUITools.SetActive(AddUnitBox, false);
-	}
+
+	} // End OnClick()
 
 	void OnHover (bool isOver) {
-
-		Debug.Log ("JASON");
 
 		if(isOver) {
 			hovering = true;
@@ -100,7 +99,6 @@ public class UnitButton : MonoBehaviour {
 			BomberDeployedLabel.text = GameVars.BomberDeployed;
 		}
 		else {
-			Debug.Log ("EXITING");
 			hovering = false;
 		}
 	}

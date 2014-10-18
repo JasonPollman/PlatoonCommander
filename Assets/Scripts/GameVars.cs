@@ -43,7 +43,12 @@ public class GameVars : MonoBehaviour {
 	// The "unit box" the user clicked on to add a unit.
 	private static int UnitBoxClicked = -1;
 
+	// Indicates whether or not the bomber has been deployed...
 	public static string BomberDeployed = "NO";
+
+	// If A unit has been put in a spot in a squad that spot will be true here:
+	public static string[] SpotFilled = new string[18]; 
+
 
 	// Get the box number that the user clicked on to add a unit.
 	public static int UnitNumberClicked {
@@ -74,14 +79,15 @@ public class GameVars : MonoBehaviour {
 
 
 	public static bool AddUnitToSquad (string type, string squad) {
+
 		
 		if(!Squads.ContainsKey(squad.ToLower())) throw new UnityException("Unknown Squad");
 
-		if(Squads[squad.ToLower()].Count < 6) {
+		if(Squads[squad.ToLower()].Count <= SquadMaxUnits) {
 			Unit NewUnit = new Unit (UnitTypes[type.ToLower()]);
 			Squads[squad.ToLower()].Add(NewUnit);
 			UnitsRemaining[type.ToLower()]--;
-			Console.Push ("Unit " + UCFirst (type) + " added to squadron " + UCFirst (squad) + ".");
+			Console.Push ("Unit " + UCFirst (type) + " added to squad " + UCFirst (squad) + ".");
 			return true;
 		}
 
@@ -94,15 +100,18 @@ public class GameVars : MonoBehaviour {
 
 		if(!Squads.ContainsKey(squad.ToLower())) throw new UnityException("Unknown Squad");
 
-		if(Squads[squad.ToLower()].Count > 0) {
-			removed = Squads[squad.ToLower()].Remove(Unit.GetFirstUnitOfType(type.ToLower()));
-			UnitsRemaining[type.ToLower()]++;
-			Debug.Log(" UNITS REM: " + UnitsRemaining[type.ToLower()].ToString());
-			Console.Push ("Unit " + UCFirst (type) + " removed from squadron " + UCFirst (squad) + ".");
-			return true;
+		foreach(Unit x in Squads[squad.ToLower()]) {
+			if(x.Type.Name.Equals(type)) {
+				Squads[squad.ToLower()].Remove(x);
+				removed = true;
+				break;
+			}
 		}
 
-		return false;
+		UnitsRemaining[type.ToLower()]++;
+		Console.Push ("Unit " + UCFirst (type) + " removed from squad " + UCFirst (squad) + ".");
+
+		return (removed) ? true : false;
 	}
 
 }

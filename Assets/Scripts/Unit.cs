@@ -24,15 +24,6 @@ public class Unit {
 		UnityEngine.MonoBehaviour.Destroy(GameObj);
 	}
 
-	public static Unit GetFirstUnitOfType(string type) {
-
-		if(GameVars.AllUnits.Count > 0) {
-			foreach (Unit x in GameVars.AllUnits) if(x.Type.Name == type) return x;
-		}
-		
-		return null;
-	}
-
 	// Use this for initialization
 	void Start () {
 	
