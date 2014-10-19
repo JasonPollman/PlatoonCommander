@@ -21,37 +21,39 @@ public class PathChanger : MonoBehaviour {
 
 		var soldier = other.gameObject;
 		if (soldier.tag != "unit") return;
-		var speed = soldier.GetComponent<move> ().getSpeed ();
+
 		//yield return new WaitForSeconds (0.5f); 
-		StartCoroutine (TestCoroutine(soldier,speed));
+		StartCoroutine (TestCoroutine(soldier));
 
 
 
 	}
 	
 
-	IEnumerator TestCoroutine(GameObject soldier,float speed)
+	IEnumerator TestCoroutine(GameObject soldier)
 	{
-			yield return new WaitForSeconds(2f);
+		var speed = soldier.GetComponent<move> ().getSpeed ();
+		var defaultRotation = soldier.GetComponent<move> ().getDefaultRotation ();
+
+		yield return new WaitForSeconds(2f);
 		switch (dir) {
 		case direction.down:
-			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.transform.Rotate(0f, 0f, 0f);
+			soldier.transform.rotation = defaultRotation;
+			soldier.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
 			soldier.rigidbody2D.velocity = new Vector2(0f, -1*speed);
 			break;
 		case direction.up:
-			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.transform.Rotate(0f, 0f, 0f);
+			soldier.transform.rotation = defaultRotation;
+			soldier.transform.rotation = Quaternion.Euler(0f, 0f, 5f);
 			soldier.rigidbody2D.velocity = new Vector2(0f, speed);
 			break;
 		case direction.left:
-			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.transform.Rotate(0f, 0f, 0f);
+			soldier.transform.rotation = defaultRotation;
+			soldier.transform.rotation = Quaternion.Euler(0f, 0f, 100f);
 			soldier.rigidbody2D.velocity = new Vector2(-1*speed, 0f);
 			break;
 		case direction.right:
-			soldier.transform.Rotate(0f, 0f, 0f);
-			soldier.transform.Rotate(0f, 0f, 0f);
+			soldier.transform.rotation = defaultRotation;
 			soldier.rigidbody2D.velocity = new Vector2(speed, 0f);
 			break;
 		}
