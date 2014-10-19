@@ -36,6 +36,8 @@ public class GameVars : MonoBehaviour {
 	// False until the user clicks the ready button to begin the game.
 	public static bool PlayerReady = false;
 
+	public static List<GameObject> PathArrows = new List<GameObject>();
+
 	public static List<Unit> AllUnits = new List<Unit>();
 
 	public static string UnitTypeClicked = "";
@@ -44,11 +46,13 @@ public class GameVars : MonoBehaviour {
 	private static int UnitBoxClicked = -1;
 
 	// Indicates whether or not the bomber has been deployed...
-	public static string BomberDeployed = "NO";
+	public static bool BomberDeployed = false;
 
 	// If A unit has been put in a spot in a squad that spot will be true here:
 	public static string[] SpotFilled = new string[18]; 
-
+	
+	// The Deploy Button Clicked
+	public static DeployButton SquadDeployClicked = null;
 
 	// Get the box number that the user clicked on to add a unit.
 	public static int UnitNumberClicked {
@@ -113,5 +117,6 @@ public class GameVars : MonoBehaviour {
 
 		return (removed) ? true : false;
 	}
+
 
 }

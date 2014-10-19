@@ -6,7 +6,7 @@ using System.Linq;
 public class Unit {
 
 	public UnitType Type;
-	public Object GameObj;
+	public GameObject GameObj;
 
 	public bool Alive = true;
 
@@ -17,6 +17,7 @@ public class Unit {
 
 	public void InstantiateUnit(Vector3 position, Quaternion rotation) {
 		GameObj = (GameObject) UnityEngine.MonoBehaviour.Instantiate(Type.SpriteAnimation, position, rotation);
+		GameObj.GetComponent<SpriteRenderer> ().color = Type.UnitColor;
 	}
 	
 	public void KillUnit() {

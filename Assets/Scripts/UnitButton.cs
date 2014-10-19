@@ -16,7 +16,7 @@ public class UnitButton : MonoBehaviour {
 	AudioClip originalClip;
 	// Use this for initialization
 	void Start () {
-		BomberDeployedLabel.text = GameVars.BomberDeployed;
+		BomberDeployedLabel.text = GameVars.BomberDeployed ? "YES" : "NO";
 		UnitNameLabel.text = GameVars.UnitTypes["bomber"].Name.ToUpper();
 		AboutUnit.text = GameVars.UnitTypes["bomber"].About;
 		DP.text = "DP: " + GameVars.UnitTypes["bomber"].DP.ToString();
@@ -70,6 +70,8 @@ public class UnitButton : MonoBehaviour {
 
 			UIImageButton AddTileButton = GameObject.Find("AddUnit" + GameVars.UnitNumberClicked.ToString()).GetComponent<UIImageButton>();
 			AddTileButton.normalSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
+			AddTileButton.disabledSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
+			AddTileButton.hoverSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
 			UISprite AddTile = GameObject.Find("AddUnit" + GameVars.UnitNumberClicked.ToString() + "/Background").GetComponent<UISprite>();
 
 
@@ -96,7 +98,7 @@ public class UnitButton : MonoBehaviour {
 			AboutUnit.text = GameVars.UnitTypes[UnitType.ToLower()].About;
 			DP.text = "DP: " + GameVars.UnitTypes[UnitType.ToLower()].DP.ToString();
 			HP.text = "HP: " + GameVars.UnitTypes[UnitType.ToLower()].HP.ToString();
-			BomberDeployedLabel.text = GameVars.BomberDeployed;
+			BomberDeployedLabel.text = (GameVars.BomberDeployed) ? "YES" : "NO";
 		}
 		else {
 			hovering = false;

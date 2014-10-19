@@ -10,7 +10,7 @@ public class UnitType {
 	public int DP = 0;
 	public string[] SpecialAbilities;
 	public string About;
-	public Object SpriteAnimation;
+	public GameObject SpriteAnimation;
 	public bool GameOverOnDeath = false;
 	public string GUISprite;
 	public Color UnitColor;
@@ -22,7 +22,7 @@ public class UnitType {
 		Name = UnitName;
 		HP = UnitHP;
 		DP = UnitDP;
-		SpriteAnimation = Resources.Load ("Soldier");
+		SpriteAnimation = Resources.Load<GameObject>("Soldier");
 		SpecialAbilities = UnitSpecialAbilities;
 		About = AboutThisUnit;
 		GameOverOnDeath = GameOverOnUnitDeath;
