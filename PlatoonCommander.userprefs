@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Unit.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PathChanger.cs">
     <Files>
-      <File FileName="Assets/Scripts/TurretControl.cs" Line="29" Column="1" />
-      <File FileName="Assets/DeployArrow.cs" Line="51" Column="80" />
-      <File FileName="Assets/Scripts/GameVars.cs" Line="42" Column="2" />
-      <File FileName="Assets/Scripts/Unit.cs" Line="30" Column="2" />
-      <File FileName="Assets/DeployButton.cs" Line="13" Column="47" />
-      <File FileName="Assets/Scripts/UnitType.cs" Line="15" Column="26" />
-      <File FileName="Assets/Scripts/UnitButton.cs" Line="29" Column="18" />
-      <File FileName="Assets/HideSpriteOnStart.cs" Line="15" Column="2" />
-      <File FileName="Assets/BomberDeployed.cs" Line="13" Column="95" />
+      <File FileName="Assets\PathChanger.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\TurretControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\DeployArrow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameVars.cs" Line="1" Column="1" />
+      <File FileName="Assets\DeployButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UnitType.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UnitButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\HideSpriteOnStart.cs" Line="1" Column="1" />
+      <File FileName="Assets\BomberDeployed.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

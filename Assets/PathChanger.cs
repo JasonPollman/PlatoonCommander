@@ -7,7 +7,7 @@ public class PathChanger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -18,9 +18,21 @@ public class PathChanger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 
 
+
 		var soldier = other.gameObject;
 		if (soldier.tag != "unit") return;
 		var speed = soldier.GetComponent<move> ().getSpeed ();
+		//yield return new WaitForSeconds (0.5f); 
+		StartCoroutine (TestCoroutine(soldier,speed));
+
+
+
+	}
+	
+
+	IEnumerator TestCoroutine(GameObject soldier,float speed)
+	{
+			yield return new WaitForSeconds(2f);
 		switch (dir) {
 		case direction.down:
 			soldier.transform.Rotate(0f, 0f, 0f);
@@ -45,15 +57,6 @@ public class PathChanger : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D col){
-		Debug.Log ("Hit");
-		foreach (ContactPoint2D contact in col.contacts) {
-			Debug.Log (contact.collider.tag);
-			if(contact.collider.tag == "unit"){
-
-			}
-		}
-	}
 
 
 }
