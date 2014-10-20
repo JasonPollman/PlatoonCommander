@@ -15,7 +15,7 @@ public class ChangeTimerLabel : MonoBehaviour {
 		UILabel timerText = GameObject.Find("TimerText").GetComponent<UILabel>();
 		timerText.text = GameTimer.TimeRemainingFormatted();
 
-		if(GameTimer.TimeRemaining <= 10 && !audio.isPlaying) {
+		if(GameTimer.TimeRemaining <= 10 && !audio.isPlaying && GameVars.PlayerReady) {
 			audio.Play();
 		}
 	}

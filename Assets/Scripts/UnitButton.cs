@@ -28,15 +28,14 @@ public class UnitButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(hovering && GameVars.UnitsRemaining[UnitType.ToLower()] <= 0) {
+		if(GameVars.UnitsRemaining[UnitType.ToLower()] <= 0) {
 			gameObject.GetComponent<UIButtonSound>().audioClip = ErrorClip;
-			gameObject.transform.FindChild("Background").GetComponent<UISprite>().color = new Color(10,10,10);
+			gameObject.transform.FindChild("Background").GetComponent<UISprite>().color = new Color(.3f, .3f, .3f, 1f);
 		}
-		else if(!hovering) {
-			gameObject.GetComponent<UIButtonSound>().audioClip = originalClip;
-			gameObject.transform.FindChild("Background").GetComponent<UISprite>().color = new Color(255, 255, 255);
+		else if(hovering == false) {
+			gameObject.transform.FindChild("Background").GetComponent<UISprite>().color = new Color(1f, 1f, 1f);
 		}
-	
+
 	}
 
 	void Awake () {
@@ -54,6 +53,7 @@ public class UnitButton : MonoBehaviour {
 		ThisUnitSpot = GameVars.UnitNumberClicked;
 
 		bool addSuccess = false;
+		gameObject.transform.FindChild("Background").GetComponent<UISprite>().color = new Color(1f, 1f, 1f);
 
 		if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0 && GameVars.SpotFilled[ThisUnitSpot - 1] == null) {
 
@@ -88,6 +88,7 @@ public class UnitButton : MonoBehaviour {
 	void OnHover (bool isOver) {
 
 		if(isOver) {
+
 			hovering = true;
 
 			if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0) {

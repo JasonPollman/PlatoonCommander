@@ -14,7 +14,7 @@ public class ReadyClicked : MonoBehaviour {
 	}
 
 	void OnClick () {
-		NGUITools.SetActive (GameObject.Find("GameStartBox"), false);
+		NGUITools.SetActive (gameObject.transform.parent.gameObject, false);
 		GameVars.PlayerReady = true;
 	}
 }

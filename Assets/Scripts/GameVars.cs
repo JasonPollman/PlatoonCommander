@@ -12,9 +12,9 @@ public class GameVars : MonoBehaviour {
 	public static int SquadMaxUnits = 6;
 	
 	public static Dictionary<string, UnitType> UnitTypes =  new Dictionary<string, UnitType> {
-		{"bomber"			, new UnitType("bomber"		 	 , 3, 1, null, new Color(.5f, .5f, .5f), "This is the Demolitions Expert", true,  "UnitType1") },
+		{"bomber"			, new UnitType("bomber"		 	 , 3, 1, null, new Color(1f, .18f, .18f), "The Demolitions Expert—your bomber and most important unit. This guy likes to blow stuff up, and it's your job to get him to the target.", true,  "UnitType1") },
 		{"ldu"				, new UnitType("ldu"			 , 2, 2, null, new Color(0, 0, 0), "This is the Demolitions Expert", false, "UnitType2") },
-		{"rifiler"			, new UnitType("rifiler"		 , 1, 3, null, new Color(0, 0, 1), "This is the Demolitions Expert", false, "UnitType3") },
+		{"rifiler"			, new UnitType("rifiler"		 , 1, 3, null, new Color(.4f, .97f, .4f), "Fresh out of boot camp, the Rifiler is a standard rifle carrying unit. What this guy lacks in experience, he makes up for in taking hits for your bomber.", false, "UnitType3") },
 		{"special forces"	, new UnitType("special forces"  , 4, 4, null, new Color(255, 255, 255), "This is the Demolitions Expert", false, "UnitType4") },
 		{"firefighter"		, new UnitType("firefighter"	 , 5, 5, null, new Color(255, 255, 255), "This is the Demolitions Expert", false, "UnitType5") },
 		{"commando"			, new UnitType("commando"		 , 3, 6, null, new Color(255, 255, 255), "This is the Demolitions Expert", false, "UnitType6") }
@@ -32,6 +32,12 @@ public class GameVars : MonoBehaviour {
 		{ "commando"		, LevelConfig.NumberOfUnits["commando"] 		},
 
 	};
+
+	// THE BOMBER UNIT! //
+	public static Unit BomberUnit = null;
+
+	// The reason for GameOver
+	public static string GameOverReason = "";
 
 	// False until the user clicks the ready button to begin the game.
 	public static bool PlayerReady = false;

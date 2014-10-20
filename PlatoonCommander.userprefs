@@ -1,9 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PathChanger.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelConfig.cs">
     <Files>
-      <File FileName="Assets\move.cs" Line="6" Column="36" />
-      <File FileName="Assets\PathChanger.cs" Line="42" Column="61" />
+      <File FileName="Assets/Scripts/ReadyClicked.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MessageBox.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DeployArrow.cs" Line="11" Column="26" />
+      <File FileName="Assets/Scripts/DeployButton.cs" Line="34" Column="4" />
+      <File FileName="Assets/Scripts/WinLooseCondition.cs" Line="23" Column="2" />
+      <File FileName="Assets/Scripts/UnitObject.cs" Line="6" Column="27" />
+      <File FileName="Assets/Scripts/KillBomberOnImpact.cs" Line="21" Column="1" />
+      <File FileName="Assets/Scripts/GameVars.cs" Line="21" Column="4" />
+      <File FileName="Assets/Scripts/LevelConfig.cs" Line="27" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

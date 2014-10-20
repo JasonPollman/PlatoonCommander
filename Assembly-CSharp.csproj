@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_0;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_0;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,17 +39,13 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BomberDeployed.cs" />
-     <Compile Include="Assets\DeployArrow.cs" />
-     <Compile Include="Assets\DeployButton.cs" />
-     <Compile Include="Assets\HideSpriteOnStart.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -168,39 +164,48 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITiledSprite.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\PathChanger.cs" />
      <Compile Include="Assets\Scripts\AddUnitToSquad.cs" />
+     <Compile Include="Assets\Scripts\BomberDeployed.cs" />
      <Compile Include="Assets\Scripts\ChangeTimerLabel.cs" />
      <Compile Include="Assets\Scripts\Console.cs" />
      <Compile Include="Assets\Scripts\Cursor.cs" />
+     <Compile Include="Assets\Scripts\DeployArrow.cs" />
+     <Compile Include="Assets\Scripts\DeployButton.cs" />
+     <Compile Include="Assets\Scripts\GameOverReason.cs" />
      <Compile Include="Assets\Scripts\GameTimer.cs" />
      <Compile Include="Assets\Scripts\GameVars.cs" />
      <Compile Include="Assets\Scripts\GotoLevel1.cs" />
      <Compile Include="Assets\Scripts\GotoTitleMenu.cs" />
      <Compile Include="Assets\Scripts\Hide.cs" />
+     <Compile Include="Assets\Scripts\HideSpriteOnStart.cs" />
+     <Compile Include="Assets\Scripts\KillBomberOnImpact.cs" />
      <Compile Include="Assets\Scripts\LevelConfig.cs" />
      <Compile Include="Assets\Scripts\LevelObject.cs" />
      <Compile Include="Assets\Scripts\LevelOptions.cs" />
+     <Compile Include="Assets\Scripts\MessageBox.cs" />
+     <Compile Include="Assets\Scripts\PathChanger.cs" />
      <Compile Include="Assets\Scripts\QuitGameScript.cs" />
      <Compile Include="Assets\Scripts\RandomPattonQuote.cs" />
      <Compile Include="Assets\Scripts\ReadyClicked.cs" />
      <Compile Include="Assets\Scripts\StartGame.cs" />
+     <Compile Include="Assets\Scripts\StopObjects.cs" />
      <Compile Include="Assets\Scripts\TimerTint.cs" />
      <Compile Include="Assets\Scripts\TitleMenuQuitAction.cs" />
      <Compile Include="Assets\Scripts\TitleStartAction.cs" />
      <Compile Include="Assets\Scripts\TurretControl.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitButton.cs" />
+     <Compile Include="Assets\Scripts\UnitObject.cs" />
      <Compile Include="Assets\Scripts\UnitType.cs" />
      <Compile Include="Assets\Scripts\UnitTypes.cs" />
      <Compile Include="Assets\Scripts\UserData.cs" />
-     <Compile Include="Assets\move.cs" />
+     <Compile Include="Assets\Scripts\WinLooseCondition.cs" />
+     <Compile Include="Assets\Scripts\move.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\GUI - Text Shader (SoftClip).shader" />
-     <None Include="Assets\Map1 2.xml" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (AlphaClip).shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
@@ -214,7 +219,6 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (SoftClip).shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (SoftClip).shader" />
-     <None Include="Assets\Tiles.xml" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font.shader" />
      <None Include="Assets\NGUI\ReadMe - 2.7.0.txt" />
@@ -225,7 +229,6 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\NGUI\Examples\Shaders\Refractive.shader" />
-     <None Include="Assets\Collisons.xml" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (SoftClip).shader" />

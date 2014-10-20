@@ -31,8 +31,9 @@ public class GameTimer : MonoBehaviour {
 
 			if(_TimeRemaining <= 0){
 				GameVars.PlayerReady = false;
-				Application.LoadLevel ("GameOver");
+				GameVars.GameOverReason = "Mission Failed: Time is up!";
 				UserData.UserCurrentLevel = 1;
+				Application.LoadLevel ("GameOver");
 			}
 
 		}
