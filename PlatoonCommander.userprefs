@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelConfig.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\StopObjects.cs">
     <Files>
-      <File FileName="Assets/Scripts/ReadyClicked.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MessageBox.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DeployArrow.cs" Line="11" Column="26" />
-      <File FileName="Assets/Scripts/DeployButton.cs" Line="34" Column="4" />
-      <File FileName="Assets/Scripts/WinLooseCondition.cs" Line="23" Column="2" />
-      <File FileName="Assets/Scripts/UnitObject.cs" Line="6" Column="27" />
-      <File FileName="Assets/Scripts/KillBomberOnImpact.cs" Line="21" Column="1" />
-      <File FileName="Assets/Scripts/GameVars.cs" Line="21" Column="4" />
-      <File FileName="Assets/Scripts/LevelConfig.cs" Line="27" Column="32" />
+      <File FileName="Assets\Scripts\TurretControl.cs" Line="53" Column="4" />
+      <File FileName="Assets\Scripts\KillBomberOnImpact.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts\UnitObject.cs" Line="14" Column="2" />
+      <File FileName="Assets\Scripts\UnitButton.cs" Line="71" Column="4" />
+      <File FileName="Assets\Scripts\Unit.cs" Line="9" Column="28" />
+      <File FileName="Assets\Scripts\UnitType.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameVars.cs" Line="131" Column="1" />
+      <File FileName="Assets\Scripts\DeployArrow.cs" Line="76" Column="5" />
+      <File FileName="Assets\Scripts\StopObjects.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

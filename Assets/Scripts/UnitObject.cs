@@ -6,10 +6,10 @@ public class UnitObject : MonoBehaviour {
 	public bool Alive = true;
 	public int HP;
 	public int DP;
+	public string Type;
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 
 	void Update () {
@@ -18,6 +18,7 @@ public class UnitObject : MonoBehaviour {
 
 	public void KillUnit () {
 
+		Console.Push ("Unit " + Type + " has been killed!");
 		Alive = false;
 		NGUITools.SetActive (gameObject, false);
 
@@ -25,7 +26,7 @@ public class UnitObject : MonoBehaviour {
 
 	public void TakeHit () {
 
-		HP = (HP > 0) ? HP - 1 : 0;
+		HP--;
 
 		if(HP <= 0) KillUnit();
 	

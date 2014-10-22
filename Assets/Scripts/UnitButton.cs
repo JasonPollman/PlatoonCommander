@@ -9,7 +9,7 @@ public class UnitButton : MonoBehaviour {
 
 	private int ThisUnitSpot;
 
-	private GameObject ThisButtonsUnit;
+	private Unit ThisButtonsUnit;
 
 	private bool hovering;
 
@@ -32,9 +32,10 @@ public class UnitButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(ThisButtonsUnit) {
-			UnitHPLabel.text = "HP :" + ThisButtonsUnit.GetComponent<UnitObject>().HP;
-			UnitDPLabel.text = "DP :" + ThisButtonsUnit.GetComponent<UnitObject>().DP;
+		if(ThisButtonsUnit != null && ThisButtonsUnit.Instantiated) {
+			Debug.Log ("IN UPDATE");
+			UnitHPLabel.text = "HP :" + ThisButtonsUnit.GameObj.GetComponent<UnitObject>().HP;
+			UnitDPLabel.text = "DP :" + ThisButtonsUnit.GameObj.GetComponent<UnitObject>().DP;
 		}
 
 		if(GameVars.UnitsRemaining[UnitType.ToLower()] <= 0) {
@@ -61,21 +62,23 @@ public class UnitButton : MonoBehaviour {
 		GameVars.UnitTypeClicked = UnitType.ToLower();
 		ThisUnitSpot = GameVars.UnitNumberClicked;
 
-		Unit addSuccess = null;
 		gameObject.transform.FindChild("Background").GetComponent<UISprite>().color = new Color(1f, 1f, 1f);
 
 		if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0 && GameVars.SpotFilled[ThisUnitSpot - 1] == null) {
 
-			addSuccess = GameVars.AddUnitToSquad(UnitType.ToLower(), GameVars.SquadClicked);
+			ThisButtonsUnit = GameVars.AddUnitToSquad(UnitType.ToLower(), GameVars.SquadClicked);
 			GameVars.SpotFilled[ThisUnitSpot - 1] = UnitType.ToLower();
 		}
 		else if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0) {
 			bool remSuccess = GameVars.RemoveUnitFromSquad(GameVars.SpotFilled[ThisUnitSpot - 1], GameVars.SquadClicked);
-			addSuccess = GameVars.AddUnitToSquad(UnitType.ToLower(), GameVars.SquadClicked);
+			ThisButtonsUnit = GameVars.AddUnitToSquad(UnitType.ToLower(), GameVars.SquadClicked);
 
 		}
+		else {
+			ThisButtonsUnit = null;
+		}
 
-		if(addSuccess != null) { // Change the + Button to the Unit Type
+		if(ThisButtonsUnit != null) { // Change the + Button to the Unit Type
 
 			UIImageButton AddTileButton = GameObject.Find("AddUnit" + GameVars.UnitNumberClicked.ToString()).GetComponent<UIImageButton>();
 			AddTileButton.normalSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = AddTileButton.disabledSprite = "AddUnitBlank";
@@ -85,7 +88,10 @@ public class UnitButton : MonoBehaviour {
 			AddTile.MakePixelPerfect();
 			AddTile.MarkAsChanged();
 
+			Destroy(GameObject.Find ("AddUnit" + GameVars.UnitNumberClicked.ToString() + "/UnitBKG"));
+
 			GameObject unitRef = ((GameObject) Instantiate(Resources.Load<GameObject>("BlankSprite")));
+			unitRef.gameObject.name = "UnitBKG";
 			UISprite unitRefSprite = unitRef.GetComponent<UISprite>();
 			unitRefSprite.spriteName = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
 
@@ -100,7 +106,7 @@ public class UnitButton : MonoBehaviour {
 			Instantiate(UnitHPLabelObject);
 			UnitHPLabel = UnitHPLabelObject.AddComponent<UILabel>();
 			UnitHPLabel.transform.parent = AddTileButton.transform;
-			UnitHPLabel.text = "HP: " + addSuccess.Type.HP;
+			UnitHPLabel.text = "HP: " + ThisButtonsUnit.Type.HP;
 			UnitHPLabel.name = "HP Label";
 			UnitHPLabel.color = new Color((191f / 255f), 0, 0);
 			UnitHPLabel.font = (UIFont) Resources.Load<UIFont>("UIFontSmall");
@@ -120,7 +126,7 @@ public class UnitButton : MonoBehaviour {
 			Instantiate(UnitDPLabelObject);
 			UnitDPLabel = UnitDPLabelObject.AddComponent<UILabel>();
 			UnitDPLabel.transform.parent = AddTileButton.transform;
-			UnitDPLabel.text = "DP: " + addSuccess.Type.DP;
+			UnitDPLabel.text = "DP: " + ThisButtonsUnit.Type.DP;
 			UnitDPLabel.name = "DP Label";
 			UnitDPLabel.color = new Color(0, (191f / 255f), (17f / 255f));
 			UnitDPLabel.font = (UIFont) Resources.Load<UIFont>("UIFontSmall");
@@ -133,8 +139,6 @@ public class UnitButton : MonoBehaviour {
 			UnitDPLabel.MarkAsChanged();
 			
 			UnitDPLabel.transform.localPosition = new Vector3(34, 10, 0);
-
-			ThisButtonsUnit = addSuccess.GameObj;
 
 
 		}

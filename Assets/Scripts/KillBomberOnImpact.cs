@@ -14,7 +14,8 @@ public class KillBomberOnImpact : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D unit) {
-		Debug.Log ("HERE");
-		unit.gameObject.GetComponent<UnitObject>().KillUnit();
+		Debug.Log (unit.GetComponent<UnitObject>().HP.ToString() + " PRE");
+		unit.gameObject.GetComponent<UnitObject>().TakeHit();
+		Debug.Log (unit.GetComponent<UnitObject>().HP.ToString() + " POST");
 	}
 }
