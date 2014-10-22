@@ -32,9 +32,8 @@ public class GameVars : MonoBehaviour {
 		{ "commando"		, LevelConfig.NumberOfUnits["commando"] 		},
 
 	};
-
-	// THE BOMBER UNIT! //
-	public static Unit BomberUnit = null;
+	
+	public static bool GameInPlay = true;
 
 	// The reason for GameOver
 	public static string GameOverReason = "";
@@ -45,6 +44,9 @@ public class GameVars : MonoBehaviour {
 	public static List<GameObject> PathArrows = new List<GameObject>();
 
 	public static List<Unit> AllUnits = new List<Unit>();
+
+	// THE BOMBER UNIT! //
+	public static Unit BomberUnit = new Unit(UnitTypes["bomber"]);
 
 	public static string UnitTypeClicked = "";
 
@@ -88,7 +90,7 @@ public class GameVars : MonoBehaviour {
 	}
 
 
-	public static bool AddUnitToSquad (string type, string squad) {
+	public static Unit AddUnitToSquad (string type, string squad) {
 
 		
 		if(!Squads.ContainsKey(squad.ToLower())) throw new UnityException("Unknown Squad");
@@ -98,10 +100,10 @@ public class GameVars : MonoBehaviour {
 			Squads[squad.ToLower()].Add(NewUnit);
 			UnitsRemaining[type.ToLower()]--;
 			Console.Push ("Unit " + UCFirst (type) + " added to squad " + UCFirst (squad) + ".");
-			return true;
+			return NewUnit;
 		}
 
-		return false;
+		return null;
 	}
 
 	public static bool RemoveUnitFromSquad (string type, string squad) {

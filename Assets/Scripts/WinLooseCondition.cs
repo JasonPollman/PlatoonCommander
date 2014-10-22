@@ -18,6 +18,7 @@ public class WinLooseCondition : MonoBehaviour {
 	void Update () {
 		if(GameVars.BomberDeployed && GameVars.BomberUnit != null && GameVars.BomberUnit.GameObj.GetComponent<UnitObject>().Alive == false) { // Game Over, the Bomber is Dead...
 			StartCoroutine(DeathNextLevel());
+			GameVars.GameInPlay = false;
 		}
 	}
 
@@ -32,6 +33,7 @@ public class WinLooseCondition : MonoBehaviour {
 
 		if(unit.gameObject.Equals(GameVars.BomberUnit.GameObj)) { // The bomber has crossed the bridge
 			StartCoroutine(Explode(unit.gameObject));
+			GameVars.GameInPlay = false;
 
 
 		}

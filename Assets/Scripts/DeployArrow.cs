@@ -73,31 +73,6 @@ public class DeployArrow : MonoBehaviour {
 				// Now hide the Arrows...
 				foreach(GameObject g in GameVars.PathArrows) NGUITools.SetActive (g, false);
 
-				int squadStartI = 0;
-
-				switch(whichSquad) {
-					case "alpha":
-						squadStartI = 1;
-						break;
-					case "beta":
-						squadStartI = 7;
-						break;
-					case "omega":
-						squadStartI = 13;
-						break;
-				}
-
-				// Now disable the add buttons for this squad
-				for(int i = squadStartI; i <= GameVars.SquadMaxUnits + squadStartI - 1; i++) {
-					UIImageButton plusButton = GameObject.Find ("AddUnit" + i).GetComponent<UIImageButton>();
-
-					if (plusButton.disabledSprite == "AddUnit") {
-						plusButton.disabledSprite = "NoAdd";
-					}
-
-					plusButton.isEnabled = false;
-				}
-
 
 				// Re-enable all + buttons
 				// Disable all + buttons while selecting a path
@@ -108,6 +83,32 @@ public class DeployArrow : MonoBehaviour {
 
 				// Now hide the "Select A Path" Sprite...
 				NGUITools.SetActive(selectText, false);
+			}
+
+			int squadStartI = 0;
+			
+			switch(whichSquad) {
+			case "alpha":
+				squadStartI = 1;
+				break;
+			case "beta":
+				squadStartI = 7;
+				break;
+			case "omega":
+				squadStartI = 13;
+				break;
+			}
+			
+			// Now disable the add buttons for this squad
+			for(int i = squadStartI; i <= GameVars.SquadMaxUnits + squadStartI - 1; i++) {
+				
+				UIImageButton plusButton = GameObject.Find ("AddUnit" + i).GetComponent<UIImageButton>();
+				
+				if (plusButton.disabledSprite == "AddUnit") {
+					plusButton.disabledSprite = "NoAdd";
+				}
+				
+				plusButton.isEnabled = false;
 			}
 
 		} // End if left click

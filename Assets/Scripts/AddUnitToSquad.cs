@@ -17,7 +17,7 @@ public class AddUnitToSquad : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if(GameVars.GameInPlay == false) gameObject.GetComponent<UIImageButton>().isEnabled = false;
 	}
 
 	void OnClick() {

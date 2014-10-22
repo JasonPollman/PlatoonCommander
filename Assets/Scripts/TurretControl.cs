@@ -20,10 +20,11 @@ public class TurretControl : MonoBehaviour {
 	// How many HP's a single hit will deal. Also for the future...
 	public int HPOnHit = 1;
 
-	private GameObject closest = new GameObject();
+	private GameObject closest;
 	
 	// Use this for initialization
 	void Start () {
+		closest = new GameObject ();
 		enemyList = GameObject.FindGameObjectsWithTag ("unit");
 		totalEnemies = enemyList.Length;
 

@@ -9,7 +9,11 @@ public class UnitButton : MonoBehaviour {
 
 	private int ThisUnitSpot;
 
+	private GameObject ThisButtonsUnit;
+
 	private bool hovering;
+
+	private UILabel UnitHPLabel, UnitDPLabel;
 
 	private UILabel UnitNameLabel, AboutUnit, HP, DP, BomberDeployedLabel;
 	private GameObject AddUnitBox;
@@ -27,6 +31,11 @@ public class UnitButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(ThisButtonsUnit) {
+			UnitHPLabel.text = "HP :" + ThisButtonsUnit.GetComponent<UnitObject>().HP;
+			UnitDPLabel.text = "DP :" + ThisButtonsUnit.GetComponent<UnitObject>().DP;
+		}
 
 		if(GameVars.UnitsRemaining[UnitType.ToLower()] <= 0) {
 			gameObject.GetComponent<UIButtonSound>().audioClip = ErrorClip;
@@ -52,7 +61,7 @@ public class UnitButton : MonoBehaviour {
 		GameVars.UnitTypeClicked = UnitType.ToLower();
 		ThisUnitSpot = GameVars.UnitNumberClicked;
 
-		bool addSuccess = false;
+		Unit addSuccess = null;
 		gameObject.transform.FindChild("Background").GetComponent<UISprite>().color = new Color(1f, 1f, 1f);
 
 		if(GameVars.UnitsRemaining[UnitType.ToLower()] > 0 && GameVars.SpotFilled[ThisUnitSpot - 1] == null) {
@@ -66,18 +75,68 @@ public class UnitButton : MonoBehaviour {
 
 		}
 
-		if(addSuccess) { // Change the + Button to the Unit Type
+		if(addSuccess != null) { // Change the + Button to the Unit Type
 
 			UIImageButton AddTileButton = GameObject.Find("AddUnit" + GameVars.UnitNumberClicked.ToString()).GetComponent<UIImageButton>();
-			AddTileButton.normalSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
-			AddTileButton.disabledSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
-			AddTileButton.hoverSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
+			AddTileButton.normalSprite = AddTileButton.hoverSprite = AddTileButton.pressedSprite = AddTileButton.disabledSprite = "AddUnitBlank";
+
 			UISprite AddTile = GameObject.Find("AddUnit" + GameVars.UnitNumberClicked.ToString() + "/Background").GetComponent<UISprite>();
-
-
-			AddTile.spriteName = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
+			AddTile.spriteName = "AddUnitBlank";
 			AddTile.MakePixelPerfect();
 			AddTile.MarkAsChanged();
+
+			GameObject unitRef = ((GameObject) Instantiate(Resources.Load<GameObject>("BlankSprite")));
+			UISprite unitRefSprite = unitRef.GetComponent<UISprite>();
+			unitRefSprite.spriteName = GameVars.UnitTypes[UnitType.ToLower()].GUISprite;
+
+			unitRef.transform.parent = AddTileButton.transform;
+			unitRef.transform.localPosition = new Vector3(-16, 25, 0);
+			unitRefSprite.MakePixelPerfect();
+			unitRefSprite.MarkAsChanged();
+
+			// Add Unit Statistics for HP
+
+			GameObject UnitHPLabelObject = new GameObject();
+			Instantiate(UnitHPLabelObject);
+			UnitHPLabel = UnitHPLabelObject.AddComponent<UILabel>();
+			UnitHPLabel.transform.parent = AddTileButton.transform;
+			UnitHPLabel.text = "HP: " + addSuccess.Type.HP;
+			UnitHPLabel.name = "HP Label";
+			UnitHPLabel.color = new Color((191f / 255f), 0, 0);
+			UnitHPLabel.font = (UIFont) Resources.Load<UIFont>("UIFontSmall");
+			UnitHPLabel.depth = 50;
+			UnitHPLabel.maxLineCount = 1;
+			UnitHPLabel.multiLine = false;
+			UnitHPLabel.pivot = UIWidget.Pivot.Right;
+			
+			UnitHPLabel.MakePixelPerfect();
+			UnitHPLabel.MarkAsChanged();
+			
+			UnitHPLabel.transform.localPosition = new Vector3(34, 25, 0);
+
+
+			// Add Unit Statistics for DP
+			GameObject UnitDPLabelObject = new GameObject();
+			Instantiate(UnitDPLabelObject);
+			UnitDPLabel = UnitDPLabelObject.AddComponent<UILabel>();
+			UnitDPLabel.transform.parent = AddTileButton.transform;
+			UnitDPLabel.text = "DP: " + addSuccess.Type.DP;
+			UnitDPLabel.name = "DP Label";
+			UnitDPLabel.color = new Color(0, (191f / 255f), (17f / 255f));
+			UnitDPLabel.font = (UIFont) Resources.Load<UIFont>("UIFontSmall");
+			UnitDPLabel.depth = 50;
+			UnitDPLabel.maxLineCount = 1;
+			UnitDPLabel.multiLine = false;
+			UnitDPLabel.pivot = UIWidget.Pivot.Right;
+			
+			UnitDPLabel.MakePixelPerfect();
+			UnitDPLabel.MarkAsChanged();
+			
+			UnitDPLabel.transform.localPosition = new Vector3(34, 10, 0);
+
+			ThisButtonsUnit = addSuccess.GameObj;
+
+
 		}
 
 		// Close the Add Unit Menu...
