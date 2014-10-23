@@ -128,8 +128,6 @@ public class UnitButton : MonoBehaviour {
 
 		} // End if/else block
 
-		Debug.Log (GameUnit);
-
 		if(GameUnit != null) { // If a unit was added...
 
 			// ---------------------- Change the + Button to the Unit Type ---------------------- //

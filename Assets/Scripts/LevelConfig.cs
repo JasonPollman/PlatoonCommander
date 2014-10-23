@@ -88,10 +88,14 @@ public class LevelConfig : MonoBehaviour {
 			GameVars.GameOverReason = "Your bomber was destroyed!";
 			StartCoroutine(DeathNextLevel());
 			GameVars.GameInPlay = false;
+			return;
 		}
 
 		// Popup the win box if the level has been defeated...
-		if(GameVars.LevelWon == true) NGUITools.SetActive(winBox, true);
+		if(GameVars.LevelWon == true) {
+			NGUITools.SetActive(winBox, true);
+			return;
+		}
 
 
 		// If all squads deployed, game over:
@@ -112,6 +116,7 @@ public class LevelConfig : MonoBehaviour {
 				GameVars.GameOverReason = "You failed to destroy the target with three squads!";
 				StartCoroutine(DeathNextLevel());
 				GameVars.GameInPlay = false;
+				return;
 			}
 
 		} // End outer if block
@@ -125,6 +130,7 @@ public class LevelConfig : MonoBehaviour {
 				GameVars.GameOverReason = "Mission Failed: Time is up!";
 				StartCoroutine(DeathNextLevel());
 				GameVars.GameInPlay = false;
+				return;
 			}
 			
 		} // End if block

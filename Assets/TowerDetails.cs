@@ -8,17 +8,15 @@ public class TowerDetails : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-		Tower = gameObject.transform.parent.gameObject;
+		TD = gameObject.transform.parent.transform.Find ("TowerDetails").gameObject;
 
-		TD = GameObject.Find (Tower.name + "/TowerDetails");
-
-		ROFL 		= GameObject.Find (Tower.name + "/" + TD.name + "/RateOfFire");
-		HPDealtL 	= GameObject.Find (Tower.name + "/" + TD.name + "/HPDealt");
-		HitPercentL = GameObject.Find (Tower.name + "/" + TD.name + "/HitPercentage");
-		RangeL 		= GameObject.Find (Tower.name + "/" + TD.name + "/AttackRange");
-		TypeL		= GameObject.Find (Tower.name + "/" + TD.name + "/Projectile");
-		NameL		= GameObject.Find (Tower.name + "/" + TD.name + "/TowerName");
-		RotationL 	= GameObject.Find (Tower.name + "/" + TD.name + "/Rotation");
+		ROFL 		= gameObject.transform.parent.transform.Find("TowerDetails/RateOfFire").gameObject;
+		HPDealtL 	= gameObject.transform.parent.transform.Find("TowerDetails/HPDealt").gameObject;
+		HitPercentL = gameObject.transform.parent.transform.Find("TowerDetails/HitPercentage").gameObject;
+		RangeL 		= gameObject.transform.parent.transform.Find("TowerDetails/AttackRange").gameObject;
+		TypeL		= gameObject.transform.parent.transform.Find("TowerDetails/Projectile").gameObject;
+		NameL		= gameObject.transform.parent.transform.Find("TowerDetails/TowerName").gameObject;
+		RotationL 	= gameObject.transform.parent.transform.Find("TowerDetails/Rotation").gameObject;
 	}
 
 	void Start () {
@@ -37,9 +35,7 @@ public class TowerDetails : MonoBehaviour {
 	
 	void OnHover(bool hovering) {
 
-		Debug.Log ("HERE");
-
-		if(hovering) {
+		if(hovering && GameVars.PlayerReady) {
 			NGUITools.SetActive (TD, true);
 		}
 		else {

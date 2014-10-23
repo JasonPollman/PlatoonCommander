@@ -51,21 +51,26 @@ public class TurretControl : MonoBehaviour {
 	// The tower's type
 	public string TowerType;
 
+	// Don't shoot while rotating!
+	private bool RotationReady = false;
+	private Quaternion RotQ = new Quaternion (0, 0, 0, 0);
+
 	private GameObject closest;
 
 
 	void Start () {
 
+		end = GameObject.Find ("Target");
 		closest = null;
 		enemyList = GameObject.FindGameObjectsWithTag ("unit");
-		flames = GameObject.Find (gameObject.name + "/FireSprite");
-		hit = GameObject.Find (gameObject.transform.parent.name + "/Hit");
-		miss = GameObject.Find (gameObject.transform.parent.name + "/Miss");
+		flames = gameObject.transform.Find ("FireSprite").gameObject;
+		hit = gameObject.transform.parent.transform.Find("Hit").gameObject;
+		miss = gameObject.transform.parent.transform.Find("Miss").gameObject;
 		NGUITools.SetActive (flames, false);
 		NGUITools.SetActive (hit, false);
 		NGUITools.SetActive (miss, false);
 		totalEnemies = enemyList.Length;
-		gameObject.GetComponent<UISprite> ().color = TurretColor;
+		gameObject.transform.Find("Background").GetComponent<UISprite>().color = TurretColor;
 		InvokeRepeating("Shoot", 1, TimeBetweenShotsInSec);
 		InvokeRepeating("Fire", 1.1f, TimeBetweenShotsInSec);
 
@@ -73,6 +78,15 @@ public class TurretControl : MonoBehaviour {
 
 	
 	void Update () {
+
+		// Make sure we don't fire while rotating
+		if((RotQ.eulerAngles - transform.rotation.eulerAngles).sqrMagnitude < Range * 1000) {
+			RotationReady = true;
+		}
+		else {
+			Debug.Log ("HERE");
+			RotationReady = false;
+		}
 
 		// Grab all the units on the map
 		enemyList = GameObject.FindGameObjectsWithTag ("unit");
@@ -88,7 +102,7 @@ public class TurretControl : MonoBehaviour {
 			if(enemy != null) { // If there is a closest one...
 
 				// Rotate towards the unit
-				Rotate();
+				RotQ = Rotate();
 
 				// Get the unit's script
 				UO = enemy.GetComponent<UnitObject>();
@@ -138,12 +152,14 @@ public class TurretControl : MonoBehaviour {
 	/**
 	 * Rotates to face the target
 	 */
-	void Rotate() {
+	Quaternion Rotate() {
 
 		Vector3 vectorToTarget = enemy.transform.position - transform.position;
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 		transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * RotationSpeed);
+
+		return q;
 
 	} // End Rotate()
 
@@ -155,7 +171,7 @@ public class TurretControl : MonoBehaviour {
 
 		float rand = Random.Range(0f, 1f);
 
-		if(totalEnemies > 0 && enemy != null && inRange == true){
+		if(totalEnemies > 0 && enemy != null && inRange == true && RotationReady == true){
 
 			// Turn on the "cannon flames"
 			NGUITools.SetActive (flames, true);
@@ -163,7 +179,6 @@ public class TurretControl : MonoBehaviour {
 			// Play the "boom" clip
 			audio.PlayOneShot (boom);
 
-			Debug.Log (rand);
 			if(rand <= HitPercentage) {
 
 				// Get the UnitObject script

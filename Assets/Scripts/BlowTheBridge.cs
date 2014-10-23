@@ -27,6 +27,9 @@ public class BlowTheBridge : MonoBehaviour {
 		if(unit.gameObject.Equals(GameVars.BomberUnit.GameObj)) { // The bomber has crossed the bridge
 			StartCoroutine(Explode(unit.gameObject));
 			GameVars.GameInPlay = false;
+
+			// Stop Level Audio
+			GameObject.Find ("UI Root (2D)").audio.Stop();
 		}
 
 	} // End OnTriggerExit2D()
@@ -46,6 +49,9 @@ public class BlowTheBridge : MonoBehaviour {
 	IEnumerator StopExplosions () {
 
 		yield return new WaitForSeconds(3f);
+
+		// Play Winning Sound...
+		audio.Play();
 
 		bridge.GetComponent<UISprite> ().spriteName = "BridgeDestroyed";
 		Console.Push ("Mission Successful!");

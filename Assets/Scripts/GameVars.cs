@@ -110,6 +110,7 @@ public class GameVars : MonoBehaviour {
 		return PattonQuotes[(int) Mathf.Floor(Random.Range(0, PattonQuotes.Length))];
 	}
 
+	public static Dictionary<int, bool> DeployingPath = new Dictionary<int, bool> ();
 
 	/**
 	 * Adds a unit to a squad (Unit class object)
@@ -198,11 +199,13 @@ public class GameVars : MonoBehaviour {
 		SquadsDeployed = new List<string>();
 		SpotFilled = new string[18];
 		SquadDeployClicked = null;
+
 		Squads = new Dictionary<string, Unit[]> {
 			{ "alpha", new Unit[SquadMaxUnits] },
 			{ "beta" , new Unit[SquadMaxUnits] },
 			{ "omega", new Unit[SquadMaxUnits] },
 		};
+
 		UnitsRemaining = new Dictionary<string, int> {
 			{ "bomber"			, LevelConfig.NumberOfUnits["bomber"] 			},
 			{ "ldu"				, LevelConfig.NumberOfUnits["ldu"] 				},
@@ -212,6 +215,8 @@ public class GameVars : MonoBehaviour {
 			{ "commando"		, LevelConfig.NumberOfUnits["commando"] 		},
 			
 		};
+
+		DeployingPath = new Dictionary<int, bool> ();
 		
 	} // End ResetGameVars()
 

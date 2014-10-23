@@ -10,6 +10,10 @@ public class DeployArrow : MonoBehaviour {
 
 	private GameObject selectText;
 
+	public int PathNumber = 0;
+
+	private UISprite wait;
+
 	// Use this for initialization
 	void Start () {
 		// Hide the Arrow, until a User Clicks Deploy Squad...
@@ -19,6 +23,7 @@ public class DeployArrow : MonoBehaviour {
 
 	void Awake () {
 		selectText = GameObject.Find ("SelectPath");
+		wait = GameObject.Find ("SelectPath").GetComponent<UISprite>();
 	}
 	
 	// Update is called once per frame
@@ -43,8 +48,16 @@ public class DeployArrow : MonoBehaviour {
 				go.GetComponent<UIImageButton>().isEnabled = false;
 			}
 		}
+
+		// Change back to select if squad deployed...
+		if(wait.spriteName == "Wait" && GameVars.DeployingPath.ContainsKey(PathNumber) && GameVars.DeployingPath[PathNumber] == false) {
+			wait.spriteName = "Deploy";
+			wait.MakePixelPerfect();
+			wait.MarkAsChanged();
+		}
+
 	
-	}
+	} // End Update()
 
 	public string FirstLetterToUpper(string str)
 	{
@@ -55,9 +68,47 @@ public class DeployArrow : MonoBehaviour {
 			return char.ToUpper(str[0]) + str.Substring(1);
 		
 		return str.ToUpper();
-	}
+
+	} // End FireLetterToUpper()
+
+
+	void OnHover (bool hovering) {
+
+		// Change back to select if squad deployed...
+		UISprite wait = GameObject.Find ("SelectPath").GetComponent<UISprite>();
+
+		if(hovering) {
+
+			if(GameVars.DeployingPath.ContainsKey(PathNumber) && GameVars.DeployingPath[PathNumber] == true) {
+				
+				// Change Select to Wait
+				
+				wait.spriteName = "Wait";
+				wait.MakePixelPerfect();
+				wait.MarkAsChanged();
+				
+			}
+			else {
+				
+				wait.spriteName = "Deploy";
+				wait.MakePixelPerfect();
+				wait.MarkAsChanged();
+			}
+		}
+		else {
+
+			wait.spriteName = "SelectAPath";
+			wait.MakePixelPerfect();
+			wait.MarkAsChanged();	wait.MarkAsChanged();
+		}
+
+	} // End OnHover()
+	
 
 	void OnClick () {
+
+		// If waiting, return...
+		if(GameVars.DeployingPath.ContainsKey(PathNumber) && GameVars.DeployingPath[PathNumber] == true) return;
 
 		if (UICamera.currentTouchID == -1) { // Only on a left-click
 
@@ -75,7 +126,7 @@ public class DeployArrow : MonoBehaviour {
 
 				DeployButton src = GameObject.Find("BuildSquad" + FirstLetterToUpper(whichSquad) + "/DeploySquad").GetComponent<DeployButton>();
 
-				src.UnitFactory(GameVars.Squads[whichSquad], new Vector3(gameObject.transform.position.x - .1f, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0,0,0,0));
+				src.UnitFactory(PathNumber, GameVars.Squads[whichSquad], new Vector3(gameObject.transform.position.x - .1f, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0,0,0,0));
 
 				// Disable the deploy button now,
 				GameVars.SquadDeployClicked.GetComponent<UIImageButton>().isEnabled = false;
@@ -123,6 +174,11 @@ public class DeployArrow : MonoBehaviour {
 
 			// Indicate that this squad was deployed
 			GameVars.SquadsDeployed.Add(whichSquad);
+
+
+			wait.spriteName = "SelectAPath";
+			wait.MakePixelPerfect();
+			wait.MarkAsChanged();
 
 		} // End if left click
 

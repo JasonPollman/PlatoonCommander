@@ -41,14 +41,21 @@ public class DeployButton : MonoBehaviour {
 	/**
 	 * Pumps out units one by one when deployed
 	 */
-	public void UnitFactory(Unit[] squad, Vector3 pos, Quaternion rot) {
-		StartCoroutine(StartFactory(squad, pos, rot));
+	public void UnitFactory(int path, Unit[] squad, Vector3 pos, Quaternion rot) {
+		StartCoroutine(StartFactory(path, squad, pos, rot));
 	}
 	
 	/**
 	 * Coroutine for UnitFactory
 	 */
-	public IEnumerator StartFactory(Unit[] squad, Vector3 pos, Quaternion rot) {
+	public IEnumerator StartFactory(int path, Unit[] squad, Vector3 pos, Quaternion rot) {
+
+		if(!GameVars.DeployingPath.ContainsKey(path)) {
+			GameVars.DeployingPath.Add (path, true);
+		}
+		else {
+			GameVars.DeployingPath[path] = true;
+		}
 		
 		foreach(Unit x in squad) {
 
@@ -70,6 +77,8 @@ public class DeployButton : MonoBehaviour {
 			yield return new WaitForSeconds(x.GameObj.GetComponent<move>().getAdjustedSpeed());
 			
 		} // End foreach loop
+
+		GameVars.DeployingPath[path] = false;
 
 	} // End StartFactory()
 
