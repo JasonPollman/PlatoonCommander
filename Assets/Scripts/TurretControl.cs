@@ -84,7 +84,6 @@ public class TurretControl : MonoBehaviour {
 			RotationReady = true;
 		}
 		else {
-			Debug.Log ("HERE");
 			RotationReady = false;
 		}
 

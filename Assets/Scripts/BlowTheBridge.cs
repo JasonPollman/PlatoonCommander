@@ -39,6 +39,7 @@ public class BlowTheBridge : MonoBehaviour {
 		for(int i = 1; i < 6; i++) {
 			
 			NGUITools.SetActive(bridgeExplosion.transform.FindChild(i.ToString()).gameObject, true);
+			bridgeExplosion.transform.FindChild(i.ToString()).audio.Play ();
 			yield return new WaitForSeconds(unit.GetComponent<move>().getAdjustedSpeed());
 
 			if(i == 5) StartCoroutine(StopExplosions());
