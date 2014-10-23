@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 guid: d83fafa3fb87b4a34be696705b5f658c
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: SoldiersSouth_0
+    21300002: SoldiersSouth_1
+    21300004: SoldiersSouth_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -16,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
@@ -35,6 +39,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -50,6 +55,7 @@ TextureImporter:
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: SoldiersSouth_1
       rect:
         serializedVersion: 2
@@ -59,6 +65,7 @@ TextureImporter:
         height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: SoldiersSouth_2
       rect:
         serializedVersion: 2
@@ -68,5 +75,6 @@ TextureImporter:
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

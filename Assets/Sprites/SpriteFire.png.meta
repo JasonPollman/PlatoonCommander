@@ -1,6 +1,9 @@
 fileFormatVersion: 2
 guid: fb51c8b0cd16ab94e8fbb61dbffc4d3e
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpriteFire_1
+    21300002: SpriteFire_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

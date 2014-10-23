@@ -1,6 +1,32 @@
 fileFormatVersion: 2
 guid: 5a7f4329c0f524ed1a86b7a52e5567a7
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Explosion2_0
+    21300002: Explosion2_1
+    21300004: Explosion2_2
+    21300006: Explosion2_3
+    21300008: Explosion2_4
+    21300010: Explosion2_5
+    21300012: Explosion2_6
+    21300014: Explosion2_7
+    21300016: Explosion2_8
+    21300018: Explosion2_9
+    21300020: Explosion2_10
+    21300022: Explosion2_11
+    21300024: Explosion2_12
+    21300026: Explosion2_13
+    21300028: Explosion2_14
+    21300030: Explosion2_15
+    21300032: Explosion2_16
+    21300034: Explosion2_17
+    21300036: Explosion2_18
+    21300038: Explosion2_19
+    21300040: Explosion2_20
+    21300042: Explosion2_21
+    21300044: Explosion2_22
+    21300046: Explosion2_23
+    21300048: Explosion2_24
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -50,6 +77,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_1
       rect:
         serializedVersion: 2
@@ -59,6 +87,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_2
       rect:
         serializedVersion: 2
@@ -68,6 +97,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_3
       rect:
         serializedVersion: 2
@@ -77,6 +107,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_4
       rect:
         serializedVersion: 2
@@ -86,6 +117,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_5
       rect:
         serializedVersion: 2
@@ -95,6 +127,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_6
       rect:
         serializedVersion: 2
@@ -104,6 +137,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_7
       rect:
         serializedVersion: 2
@@ -113,6 +147,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_8
       rect:
         serializedVersion: 2
@@ -122,6 +157,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_9
       rect:
         serializedVersion: 2
@@ -131,6 +167,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_10
       rect:
         serializedVersion: 2
@@ -140,6 +177,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_11
       rect:
         serializedVersion: 2
@@ -149,6 +187,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_12
       rect:
         serializedVersion: 2
@@ -158,6 +197,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_13
       rect:
         serializedVersion: 2
@@ -167,6 +207,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_14
       rect:
         serializedVersion: 2
@@ -176,6 +217,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_15
       rect:
         serializedVersion: 2
@@ -185,6 +227,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_16
       rect:
         serializedVersion: 2
@@ -194,6 +237,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_17
       rect:
         serializedVersion: 2
@@ -203,6 +247,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_18
       rect:
         serializedVersion: 2
@@ -212,6 +257,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_19
       rect:
         serializedVersion: 2
@@ -221,6 +267,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_20
       rect:
         serializedVersion: 2
@@ -230,6 +277,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_21
       rect:
         serializedVersion: 2
@@ -239,6 +287,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_22
       rect:
         serializedVersion: 2
@@ -248,6 +297,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_23
       rect:
         serializedVersion: 2
@@ -257,6 +307,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Explosion2_24
       rect:
         serializedVersion: 2
@@ -266,5 +317,6 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
