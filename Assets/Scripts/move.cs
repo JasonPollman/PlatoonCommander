@@ -2,27 +2,22 @@
 using System.Collections;
 
 public class move : MonoBehaviour {
+
+	// The unit's speed
 	public double speed;
+
+	// The unit's default rotation
 	private Quaternion defaultRotation;
-	// Use this for initialization
+	
 	void Start () {
 		gameObject.rigidbody2D.velocity = new Vector2 (getSpeed(),0f);
 		defaultRotation = gameObject.transform.rotation;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public float getSpeed() { return(float)speed; }
 
-	public float getSpeed() {
-		return(float)speed;
-	}
-	public Quaternion getDefaultRotation(){
-		return defaultRotation;
-	}
+	public Quaternion getDefaultRotation(){ return defaultRotation; }
 
-	public float getAdjustedSpeed() {
-		return Mathf.Abs (1 / (getSpeed () * 10)) - .25f;
-	}
-}
+	public float getAdjustedSpeed() { return Mathf.Abs (1 / (getSpeed () * 10)) - .25f; }
+
+} // End move class

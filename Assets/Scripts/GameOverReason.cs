@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Sets the reason for loosing on the GameOver Scene
+ */
 public class GameOverReason : MonoBehaviour {
 
 	// Use this for initialization

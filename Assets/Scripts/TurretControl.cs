@@ -2,99 +2,196 @@
 using System.Collections;
 
 public class TurretControl : MonoBehaviour {
-	
-	private Vector3 position;
-	private GameObject enemy = null;
-	private GameObject[] enemyList;
-	private GameObject flames;
-	private int totalEnemies;
-	private UnitObject uo;
-	public GameObject end;
-	public AudioClip boom;
-	private bool inRange;
 
-	// Added a few public variables so that we can easily change the Tower Prefab...
+	// The enemy to fire at
+	private GameObject enemy = null;
+
+	// The list of objects tagged with "unit".
+	private GameObject[] enemyList;
+
+	// The "flames" GameObject which holds the "flames" sprite.
+	private GameObject flames, hit, miss;
+
+	// The total number of objects tagged with "unit" on the map.
+	private int totalEnemies;
+
+	// The UnitObject script on the closest unit
+	private UnitObject UO;
+
+	public GameObject end;
+
+	// The Rotation Speed of the Tower
+	public float RotationSpeed;
+
+	// The "boom" sound effect made on fire...
+	public AudioClip boom;
+
+	// The "Projectile Type"
+	public string ProjectileType;
+
+	// Whether or not the closest unit is in range.
+	private bool inRange;
 
 	// The Turret Color
 	public Color TurretColor = new Color (104, 255, 0);
 
-	// The FireRate... Alan you can do something with this and different Tower Types
-	// in the future...
-	public int FireSpeed = 1;
+	// The FireRate...
+	public float TimeBetweenShotsInSec = 1;
+
+
+	// The Hit Ratio
+	public float HitPercentage = 1;
+
+	// The tower's range
+	public float Range;
 
 	// How many HP's a single hit will deal. Also for the future...
 	public int HPOnHit = 1;
 
+	// The tower's type
+	public string TowerType;
+
 	private GameObject closest;
 
-	// Use this for initialization
+
 	void Start () {
+
 		closest = null;
 		enemyList = GameObject.FindGameObjectsWithTag ("unit");
-		flames = GameObject.Find ("SpriteFire_1");
+		flames = GameObject.Find (gameObject.name + "/FireSprite");
+		hit = GameObject.Find (gameObject.transform.parent.name + "/Hit");
+		miss = GameObject.Find (gameObject.transform.parent.name + "/Miss");
 		NGUITools.SetActive (flames, false);
+		NGUITools.SetActive (hit, false);
+		NGUITools.SetActive (miss, false);
 		totalEnemies = enemyList.Length;
 		gameObject.GetComponent<UISprite> ().color = TurretColor;
-		InvokeRepeating("Shoot", 1, 1);
-		InvokeRepeating ("Fire", 1.1f, 1);
-	}
+		InvokeRepeating("Shoot", 1, TimeBetweenShotsInSec);
+		InvokeRepeating("Fire", 1.1f, TimeBetweenShotsInSec);
+
+	} // End Start()
+
 	
-	// Update is called once per frame
 	void Update () {
+
+		// Grab all the units on the map
 		enemyList = GameObject.FindGameObjectsWithTag ("unit");
+
+		// The number of units on the map
 		totalEnemies = enemyList.Length;
+
 		if(totalEnemies > 0){
+
+			// Find the closest one...
 			enemy = FindTarget () as GameObject;
-			if(enemy != null) {
-				position = enemy.transform.position;
+
+			if(enemy != null) { // If there is a closest one...
+
+				// Rotate towards the unit
 				Rotate();
-				uo = enemy.GetComponent<UnitObject>();
-			}
+
+				// Get the unit's script
+				UO = enemy.GetComponent<UnitObject>();
+
+			} // End if block
 		}
 		else {
-			enemy = null;
+			enemy = null; // No units were found...
 		}
-	}
-	//Finds the closest enemy and targets it
+
+	} // End Update()
+
+
+	/**
+	 * Finds the closest enemy and targets it...
+	 */
 	private GameObject FindTarget() {
 
+		// Set the unit out of range
 		inRange = false;
 
-		float distance = 0.1f; //May have to play with the distance, default is 0.4f but I changed it for testing on my laptop-Erik
+		// ------------------------ ERIK'S ALGORITHM FOR FINDING THE CLOSEST ENEMY AND LOCKING ON ------------------------ //
+
 		float distanceBetween = Mathf.Infinity;
 		Vector3 thisPosition = transform.position;
-		foreach (GameObject go in enemyList) {
+
+		foreach (GameObject go in enemyList) { // Iterate through the enemyList to find the closest
+
 			Vector3 diff = go.transform.position - thisPosition;
 			Vector3 distanceToTarget = end.transform.position - go.transform.position;
 			float curDistance = diff.sqrMagnitude;
 			float tempDistance = distanceToTarget.sqrMagnitude;
-			if (curDistance < distance && tempDistance < distanceBetween) {
+
+			if (curDistance < Range && tempDistance < distanceBetween) {
 				closest = go;
 				inRange = true;
 				distanceBetween = tempDistance;
 			}
-		}
+
+		} // End foreach loop
 
 		return closest;
-	}
-	//Rotates to face the target
+
+	} // End FindTarget()
+
+
+	/**
+	 * Rotates to face the target
+	 */
 	void Rotate() {
+
 		Vector3 vectorToTarget = enemy.transform.position - transform.position;
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-		transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 8);
-	}
+		transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * RotationSpeed);
+
+	} // End Rotate()
+
+
+	/**
+	 * "Shoots" the target, reducing its HP
+	 * */
 	void Shoot(){
 
+		float rand = Random.Range(0f, 1f);
+
 		if(totalEnemies > 0 && enemy != null && inRange == true){
-			uo = enemy.GetComponent<UnitObject>();
-			audio.PlayOneShot (boom);
+
+			// Turn on the "cannon flames"
 			NGUITools.SetActive (flames, true);
-			uo.TakeHit ();
-			Console.Push ("Unit " + uo.Type.ToString()+ " was hit!");
-		}
+
+			// Play the "boom" clip
+			audio.PlayOneShot (boom);
+
+			Debug.Log (rand);
+			if(rand <= HitPercentage) {
+
+				// Get the UnitObject script
+				UO = enemy.GetComponent<UnitObject>();
+
+				// Make the unit take the hit
+				UO.TakeHit (HPOnHit, TowerType);
+
+				Debug.Log (gameObject.transform.parent.name);
+				NGUITools.SetActive(hit, true);
+				StartCoroutine(Hide(hit));
+			}
+			else {
+				NGUITools.SetActive(miss, true);
+				StartCoroutine(Hide(miss));
+			}
+
+		} // End if block
+
+	} // End Shoot()
+
+	IEnumerator Hide(GameObject o) {
+		yield return new WaitForSeconds (TimeBetweenShotsInSec - .1f);
+		NGUITools.SetActive(o, false);
 	}
-	void Fire(){
-			NGUITools.SetActive (flames, false);
-	}
-}
+
+
+	void Fire(){ NGUITools.SetActive (flames, false); }
+
+
+} // End TurretControl Class

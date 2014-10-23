@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public class DeployArrow : MonoBehaviour {
 
+	private static List<UIImageButton> disabled = new List<UIImageButton>();
+
 	private GameObject selectText;
 
 	// Use this for initialization
@@ -24,12 +26,22 @@ public class DeployArrow : MonoBehaviour {
 
 		// Cancel on right click...
 		if (Input.GetMouseButtonDown (1)) {
-			NGUITools.SetActive (gameObject, false);
-		}
 
-		// Disable all + buttons while selecting a path
-		foreach(GameObject go in GameObject.FindGameObjectsWithTag ("plusButton")) {
-			go.GetComponent<UIImageButton>().isEnabled = false;
+			NGUITools.SetActive (gameObject, false);
+			NGUITools.SetActive (selectText, false);
+
+			// Enable all + buttons, since we cancelled...
+			foreach(GameObject go in GameObject.FindGameObjectsWithTag ("plusButton")) go.GetComponent<UIImageButton>().isEnabled = true;
+			Debug.Log (disabled.Count);
+			foreach(UIImageButton dis in disabled) dis.isEnabled = false;
+
+		}
+		else {
+
+			// Disable all + buttons while selecting a path
+			foreach(GameObject go in GameObject.FindGameObjectsWithTag ("plusButton")) {
+				go.GetComponent<UIImageButton>().isEnabled = false;
+			}
 		}
 	
 	}
@@ -59,9 +71,7 @@ public class DeployArrow : MonoBehaviour {
 			if(GameVars.Squads[whichSquad] == null) throw new UnityException("Unknown Squad");
 
 			// Instantiate the squad's units...
-			if(GameVars.Squads[whichSquad].Count > 0) {
-
-				Debug.Log ("BuildSquad" + FirstLetterToUpper(whichSquad));
+			if(GameVars.Squads[whichSquad].Length > 0) {
 
 				DeployButton src = GameObject.Find("BuildSquad" + FirstLetterToUpper(whichSquad) + "/DeploySquad").GetComponent<DeployButton>();
 
@@ -70,14 +80,12 @@ public class DeployArrow : MonoBehaviour {
 				// Disable the deploy button now,
 				GameVars.SquadDeployClicked.GetComponent<UIImageButton>().isEnabled = false;
 
-				// Now hide the Arrows...
-				foreach(GameObject g in GameVars.PathArrows) NGUITools.SetActive (g, false);
-
 
 				// Re-enable all + buttons
-				// Disable all + buttons while selecting a path
 				foreach(GameObject go in GameObject.FindGameObjectsWithTag ("plusButton")) {
-					go.GetComponent<UIImageButton>().isEnabled = true;
+					if(disabled.IndexOf(go.GetComponent<UIImageButton>()) < 0) {
+						go.GetComponent<UIImageButton>().isEnabled = true;
+					}
 				}
 
 
@@ -101,15 +109,20 @@ public class DeployArrow : MonoBehaviour {
 			
 			// Now disable the add buttons for this squad
 			for(int i = squadStartI; i <= GameVars.SquadMaxUnits + squadStartI - 1; i++) {
-				
+
 				UIImageButton plusButton = GameObject.Find ("AddUnit" + i).GetComponent<UIImageButton>();
 				
-				if (plusButton.disabledSprite == "AddUnit") {
-					plusButton.disabledSprite = "NoAdd";
-				}
-				
+				if (plusButton.disabledSprite == "AddUnit") plusButton.disabledSprite = "NoAdd";
+
 				plusButton.isEnabled = false;
+				disabled.Add(plusButton);
 			}
+
+			// Now hide the Arrows...
+			foreach(GameObject g in GameVars.PathArrows) NGUITools.SetActive (g, false);
+
+			// Indicate that this squad was deployed
+			GameVars.SquadsDeployed.Add(whichSquad);
 
 		} // End if left click
 

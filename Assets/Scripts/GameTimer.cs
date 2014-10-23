@@ -4,10 +4,11 @@ using System.Collections;
 public class GameTimer : MonoBehaviour {
 
 	public static float _TimeRemaining;
-	public static float _InitialTime = LevelConfig.LevelDuration;
+	public static float _InitialTime;
 
 	// Use this for initialization
 	void Start () {
+		_InitialTime = GameObject.Find ("UI Root (2D)").GetComponent<LevelConfig>().LevelDuration;
 		_TimeRemaining = _InitialTime;
 	}
 
@@ -21,21 +22,18 @@ public class GameTimer : MonoBehaviour {
 		int seconds = (int) Mathf.Ceil((_TimeRemaining / 60 - minutes) * 60);
 		return minutes.ToString() + ":" + ((seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString());
 
-	}
+	} // End TimeRemainingFormatted()
 
 	// Update is called once per frame
 	void Update () {
 
-		if(GameVars.PlayerReady) {
+		if(GameVars.PlayerReady) { // Player must be ready...
+
 			if(_TimeRemaining > 0) _TimeRemaining -= Time.deltaTime;
+			if(_TimeRemaining < 0) _TimeRemaining = 0;
 
-			if(_TimeRemaining <= 0){
-				GameVars.PlayerReady = false;
-				GameVars.GameOverReason = "Mission Failed: Time is up!";
-				UserData.UserCurrentLevel = 1;
-				Application.LoadLevel ("GameOver");
-			}
+		} // End if block
 
-		}
-	}
-}
+	} // End Update()
+
+} // End GameTimer class

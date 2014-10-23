@@ -2,19 +2,5 @@
 using System.Collections;
 
 public class QuitGameScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	void OnClick () {
-
-			Application.Quit ();
-	}
+	void OnClick () { Application.Quit (); }
 }
