@@ -233,39 +233,41 @@ public class TurretControl : MonoBehaviour {
 	 * */
 	void Shoot(){
 
-		float rand = Random.Range(0f, 1f);
+		if(GameVars.LevelWon == false) {
+			float rand = Random.Range(0f, 1f);
 
-		if(totalEnemies > 0 && enemy != null && inRange == true && RotationReady == true){
+			if(totalEnemies > 0 && enemy != null && inRange == true && RotationReady == true){
 
-			// Turn on the "cannon flames"
-			NGUITools.SetActive (fireEffect, true);
+				// Turn on the "cannon flames"
+				NGUITools.SetActive (fireEffect, true);
 
-			// Play the "boom" clip
-			audio.PlayOneShot (sound);
+				// Play the "boom" clip
+				audio.PlayOneShot (sound);
 
-			if(rand <= HitPercentage) {
+				if(rand <= HitPercentage) {
 
-				// Get the UnitObject script
-				UO = enemy.GetComponent<UnitObject>();
+					// Get the UnitObject script
+					UO = enemy.GetComponent<UnitObject>();
 
-				// Make the unit take the hit
-				UO.TakeHit (HPOnHit, TowerType, gameObject.GetComponent<TurretControl>());
+					// Make the unit take the hit
+					UO.TakeHit (HPOnHit, TowerType, gameObject.GetComponent<TurretControl>());
 
-				Debug.Log (gameObject.transform.parent.name);
-				NGUITools.SetActive(hit, true);
-				StartCoroutine(Hide(hit));
-			}
-			else {
-				NGUITools.SetActive(miss, true);
-				StartCoroutine(Hide(miss));
-			}
+					Debug.Log (gameObject.transform.parent.name);
+					NGUITools.SetActive(hit, true);
+					StartCoroutine(Hide(hit));
+				}
+				else {
+					NGUITools.SetActive(miss, true);
+					StartCoroutine(Hide(miss));
+				}
 
-		} // End if block
+			} // End if block
+		}
 
 	} // End Shoot()
 
 	IEnumerator Hide(GameObject o) {
-		yield return new WaitForSeconds (TimeBetweenShotsInSec - .1f);
+		yield return new WaitForSeconds (.15f);
 		NGUITools.SetActive(o, false);
 	}
 	void Fire(){ 
