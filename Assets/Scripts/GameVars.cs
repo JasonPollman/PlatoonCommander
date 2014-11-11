@@ -20,7 +20,7 @@ public class GameVars : MonoBehaviour {
 		{"rifiler"			, new UnitType("rifiler"		 , 3, 4, null, 	new Color(.4f, .97f, .4f), "Fresh out of boot camp, the Rifiler is a standard rifle carrying unit. What this guy lacks in experience, he makes up for in taking hits for your bomber.", false, "UnitType3") },
 		{"special forces"	, new UnitType("special forces"  , 6, 4, null, 			new Color(.4f, .97f, .4f), "These grunts are veterans—tough as nails and ready to fight. They have high HP and DP. They can slide by some towers unscathed.", false, "UnitType6") },
 		{"firefighter"		, new UnitType("firefighter"	 , 3, 3, null, 			new Color(.35f, .38f, 1f), "With their fire retardant uniforms, Firefighters have the ability to \"extinguish\" Flamethrowing towers.", false, "UnitType5") },
-		{"commando"			, new UnitType("commando"		 , 8, 6, null, 			new Color(.4f, .97f, .4f), "Commandos, like Special Forces are tough, elite units. They can take damage like no other unit, but unlike special forces, have almost no special abilities.", false, "UnitType4") }
+		{"commando"			, new UnitType("commando"		 , 8, 6, null, 			new Color(.7f, .67f, .2f), "Commandos, like Special Forces are tough, elite units. They can take damage like no other unit, but unlike special forces, have almost no special abilities.", false, "UnitType4") }
 	};
 
 

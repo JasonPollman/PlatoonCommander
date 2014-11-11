@@ -131,7 +131,7 @@ public class TurretControl : MonoBehaviour {
 			ProjectileType = "Fire";
 			TurretColor = new Color (1f, .2f, .2f);
 			TimeBetweenShotsInSec = 1.2f;
-			HitPercentage = .8f;
+			HitPercentage = 1f;
 			Range = 0.1f;
 			HPOnHit = 100;
 			sound = (AudioClip)Resources.Load ("Flamethrower");

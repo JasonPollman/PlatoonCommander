@@ -10,7 +10,7 @@ public class PathChangerButton : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		PathChanger = gameObject.transform.parent.Find ("PathCollider").transform.gameObject; 
+		PathChanger = gameObject.transform.parent.Find("Path").transform.gameObject; 
 		PCScript = PathChanger.GetComponent<PathChanger>();
 
 		if(PCScript.directionCount > 1) {
@@ -38,7 +38,7 @@ public class PathChangerButton : MonoBehaviour {
 			btnSprite.transform.Find("Background").GetComponent<UISprite>().spriteName = "blank";
 
 			// Now kill the button
-			NGUITools.SetActive(gameObject.transform.parent.transform.Find ("Button").gameObject, false);
+			NGUITools.SetActive(gameObject, false);
 			
 			
 		} // End if(directionCount > 1)/else
@@ -141,8 +141,9 @@ public class PathChangerButton : MonoBehaviour {
 			} // End long switch block
 			
 			// Rotate the object...
-			gameObject.transform.rotation = newRotation;
 			PathChanger.GetComponent<PathChanger> ().direction = direction;
+			gameObject.transform.rotation = newRotation;
+
 
 		} // End if(directionCount > 1)
 		
