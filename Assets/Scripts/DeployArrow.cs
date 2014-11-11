@@ -174,6 +174,7 @@ public class DeployArrow : MonoBehaviour {
 
 			// Indicate that this squad was deployed
 			GameVars.SquadsDeployed.Add(whichSquad);
+			Console.Push (GameVars.UCFirst(whichSquad) + " squad has been deployed");
 
 
 			wait.spriteName = "SelectAPath";

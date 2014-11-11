@@ -18,6 +18,12 @@ public class LevelConfig : MonoBehaviour {
 	// The mission description (longer than objective... appears in game start box).
 	public string MissionDescription = "Vestibulum id ligula porta felis euismod semper. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.";
 
+	public int numRifilers = 17;
+	public int numFirefighter = 0;
+	public int numLDU = 0;
+	public int numCommando = 0;
+	public int numSpecial = 0;
+
 	// The number of each type of unit for this level
 	public static Dictionary<string, int> NumberOfUnits = new Dictionary<string, int> {
 		{"bomber", 			1  },
@@ -58,6 +64,13 @@ public class LevelConfig : MonoBehaviour {
 
 
 	void Awake () {
+
+		NumberOfUnits ["bomber"] 		 = 1;
+		NumberOfUnits ["rifiler"] 		 = numRifilers;
+		NumberOfUnits ["firefighter"] 	 = numFirefighter;
+		NumberOfUnits ["ldu"] 			 = numLDU;
+		NumberOfUnits ["special forces"] = numSpecial;
+		NumberOfUnits ["commando"] 		 = numCommando;
 
 		GameVars.ResetGameVars ();
 
@@ -108,7 +121,9 @@ public class LevelConfig : MonoBehaviour {
 
 			foreach(KeyValuePair<string, Unit[]> x in GameVars.Squads) {
 				foreach(Unit u in x.Value) {
-					if(u != null && u.GameObj && u.GameObj.GetComponent<UnitObject>().Alive == true) gameO = false;
+					if(u != null && u.GameObj && u.GameObj.GetComponent<UnitObject>().Alive == true) {
+						gameO = false;
+					}
 				}
 			}
 

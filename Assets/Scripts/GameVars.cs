@@ -15,12 +15,12 @@ public class GameVars : MonoBehaviour {
 
 	// The types of units available in the game
 	public static Dictionary<string, UnitType> UnitTypes =  new Dictionary<string, UnitType> {
-		{"bomber"			, new UnitType("bomber"		 	 , 5, 1, null, new Color(1f, .18f, .18f), "The Demolitions Expert—your bomber and most important unit. This guy likes to blow stuff up, and it's your job to get him to the target.", true,  "UnitType1") },
-		{"ldu"				, new UnitType("ldu"			 , 4, 2, null, new Color(.4f, .97f, .4f), "The Laser Defense Unit. This unit harnesses the strength of his laser impenetrable steel armor to protect against laser fire. A laser tower will only cause a fourth of the damage to the LDU.", false, "UnitType2") },
-		{"rifiler"			, new UnitType("rifiler"		 , 3, 3, null, new Color(.4f, .97f, .4f), "Fresh out of boot camp, the Rifiler is a standard rifle carrying unit. What this guy lacks in experience, he makes up for in taking hits for your bomber.", false, "UnitType3") },
-		{"special forces"	, new UnitType("special forces"  , 6, 4, null, new Color(.4f, .97f, .4f), "These grunts are veterans—tough as nails and ready to fight. They have high HP and DP. They can slide by some towers unscathed.", false, "UnitType4") },
-		{"firefighter"		, new UnitType("firefighter"	 , 3, 3, null, new Color(.4f, .97f, .4f), "With their fire retardant uniforms, Firefighters are nearly invincible to Flamethrowing Towers. Although, up against other towers—they’re not the strongest units in the platoon.", false, "UnitType5") },
-		{"commando"			, new UnitType("commando"		 , 4, 6, null, new Color(.4f, .97f, .4f), "Commandos, like Special Forces are tough, elite units. They can take damage like no other unit, but unlike special forces, have almost no special abilities.", false, "UnitType6") }
+		{"bomber"			, new UnitType("bomber"		 	 , 5, 1, null, 			new Color(1f, .18f, .18f), "The Demolitions Expert—your bomber and most important unit. This guy likes to blow stuff up, and it's your job to get him to the target.", true,  "UnitType1") },
+		{"ldu"				, new UnitType("ldu"			 , 4, 2, null, 			new Color(.4f, .97f, .4f), "The Laser Defense Unit. This unit harnesses the strength of his laser impenetrable steel armor to protect against laser fire.", false, "UnitType2") },
+		{"rifiler"			, new UnitType("rifiler"		 , 3, 4, null, 	new Color(.4f, .97f, .4f), "Fresh out of boot camp, the Rifiler is a standard rifle carrying unit. What this guy lacks in experience, he makes up for in taking hits for your bomber.", false, "UnitType3") },
+		{"special forces"	, new UnitType("special forces"  , 6, 4, null, 			new Color(.4f, .97f, .4f), "These grunts are veterans—tough as nails and ready to fight. They have high HP and DP. They can slide by some towers unscathed.", false, "UnitType6") },
+		{"firefighter"		, new UnitType("firefighter"	 , 3, 3, null, 			new Color(.35f, .38f, 1f), "With their fire retardant uniforms, Firefighters have the ability to \"extinguish\" Flamethrowing towers.", false, "UnitType5") },
+		{"commando"			, new UnitType("commando"		 , 8, 6, null, 			new Color(.4f, .97f, .4f), "Commandos, like Special Forces are tough, elite units. They can take damage like no other unit, but unlike special forces, have almost no special abilities.", false, "UnitType4") }
 	};
 
 
@@ -220,5 +220,5 @@ public class GameVars : MonoBehaviour {
 		
 	} // End ResetGameVars()
 
-
+	
 } // End GameVars Class

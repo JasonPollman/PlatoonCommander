@@ -18,6 +18,6 @@ public class move : MonoBehaviour {
 
 	public Quaternion getDefaultRotation(){ return defaultRotation; }
 
-	public float getAdjustedSpeed() { return Mathf.Abs (1 / (getSpeed () * 10)) - .25f; }
+	public float getAdjustedSpeed() { return Mathf.Abs (1 / (getSpeed () * 10)) - .5f; }
 
 } // End move class

@@ -10,7 +10,7 @@ public class TurretControl : MonoBehaviour {
 	private GameObject[] enemyList;
 
 	// The "flames" GameObject which holds the "flames" sprite.
-	private GameObject flames, hit, miss;
+	private GameObject fire1, fire2, fireEffect, hit, miss;
 
 	// The total number of objects tagged with "unit" on the map.
 	private int totalEnemies;
@@ -24,7 +24,7 @@ public class TurretControl : MonoBehaviour {
 	public float RotationSpeed;
 
 	// The "boom" sound effect made on fire...
-	public AudioClip boom;
+	public AudioClip sound;
 
 	// The "Projectile Type"
 	public string ProjectileType;
@@ -36,37 +36,40 @@ public class TurretControl : MonoBehaviour {
 	public Color TurretColor = new Color (104, 255, 0);
 
 	// The FireRate...
-	public float TimeBetweenShotsInSec = 1;
+	public float TimeBetweenShotsInSec;
 
 
 	// The Hit Ratio
-	public float HitPercentage = 1;
+	public float HitPercentage;
 
 	// The tower's range
 	public float Range;
 
 	// How many HP's a single hit will deal. Also for the future...
-	public int HPOnHit = 1;
+	public int HPOnHit;
 
 	// The tower's type
 	public string TowerType;
+	public int TowerClass;
 
 	// Don't shoot while rotating!
 	private bool RotationReady = false;
 	private Quaternion RotQ = new Quaternion (0, 0, 0, 0);
 
 	private GameObject closest;
-
-
-	void Start () {
-
+	
+	void Awake () {
+		fire1 = gameObject.transform.Find ("SpriteFire_1").gameObject;
+		fire2 = gameObject.transform.Find ("SpriteFire_2").gameObject;
+		NGUITools.SetActive (fire1, false);
+		NGUITools.SetActive (fire2, false);
+		GetTowerType ();
 		end = GameObject.Find ("Target");
 		closest = null;
 		enemyList = GameObject.FindGameObjectsWithTag ("unit");
-		flames = gameObject.transform.Find ("FireSprite").gameObject;
 		hit = gameObject.transform.parent.transform.Find("Hit").gameObject;
 		miss = gameObject.transform.parent.transform.Find("Miss").gameObject;
-		NGUITools.SetActive (flames, false);
+		NGUITools.SetActive (fireEffect, false);
 		NGUITools.SetActive (hit, false);
 		NGUITools.SetActive (miss, false);
 		totalEnemies = enemyList.Length;
@@ -76,6 +79,68 @@ public class TurretControl : MonoBehaviour {
 
 	} // End Start()
 
+	public void setTowerTint(Color color) {
+		gameObject.transform.Find("Background").GetComponent<UISprite>().color = color;
+	}
+
+	void GetTowerType(){
+
+		//Detects the tower type and sets the variables accordingly
+		switch (TowerClass) {
+		case 1:
+			RotationSpeed = 5;
+			ProjectileType = "Bullets";
+			TurretColor = new Color (1, .85f, .6f);
+			TimeBetweenShotsInSec = 0.15f;
+			HitPercentage = 0.2f;
+			Range = 0.1f;
+			HPOnHit = 1;
+			sound = (AudioClip)Resources.Load ("MachineGun");
+			audio.clip = sound;
+			fireEffect = fire1;
+			TowerType = "Machine Gunner";
+			break;
+		case 2:
+			RotationSpeed = 3;
+			ProjectileType = "Shells";
+			TurretColor = new Color (1f, .55f, 1f);
+			TimeBetweenShotsInSec = 5.0f;
+			HitPercentage = 0.75f;
+			Range = 1f;
+			HPOnHit = 2;
+			sound = (AudioClip)Resources.Load ("Boom");
+			audio.clip = sound;
+			fireEffect = fire1;
+			TowerType = "Cannon";
+			break;
+		case 3:
+			RotationSpeed = 6;
+			ProjectileType = "Bullets";
+			TurretColor = new Color (1, .85f, .6f);
+			TimeBetweenShotsInSec = 0.5f;
+			HitPercentage = 0.6f;
+			Range = 0.25f;
+			HPOnHit = 3;
+			sound = (AudioClip)Resources.Load ("RifleShot");
+			audio.clip = sound;
+			fireEffect = fire1;
+			TowerType = "Rifleman";
+			break;
+		case 4:
+			RotationSpeed = 7;
+			ProjectileType = "Fire";
+			TurretColor = new Color (1f, .2f, .2f);
+			TimeBetweenShotsInSec = 1.2f;
+			HitPercentage = .8f;
+			Range = 0.1f;
+			HPOnHit = 100;
+			sound = (AudioClip)Resources.Load ("Flamethrower");
+			audio.clip = sound;
+			fireEffect = fire2;
+			TowerType = "Flamethrower";
+			break;
+		}
+	}
 	
 	void Update () {
 
@@ -173,10 +238,10 @@ public class TurretControl : MonoBehaviour {
 		if(totalEnemies > 0 && enemy != null && inRange == true && RotationReady == true){
 
 			// Turn on the "cannon flames"
-			NGUITools.SetActive (flames, true);
+			NGUITools.SetActive (fireEffect, true);
 
 			// Play the "boom" clip
-			audio.PlayOneShot (boom);
+			audio.PlayOneShot (sound);
 
 			if(rand <= HitPercentage) {
 
@@ -184,7 +249,7 @@ public class TurretControl : MonoBehaviour {
 				UO = enemy.GetComponent<UnitObject>();
 
 				// Make the unit take the hit
-				UO.TakeHit (HPOnHit, TowerType);
+				UO.TakeHit (HPOnHit, TowerType, gameObject.GetComponent<TurretControl>());
 
 				Debug.Log (gameObject.transform.parent.name);
 				NGUITools.SetActive(hit, true);
@@ -203,9 +268,8 @@ public class TurretControl : MonoBehaviour {
 		yield return new WaitForSeconds (TimeBetweenShotsInSec - .1f);
 		NGUITools.SetActive(o, false);
 	}
-
-
-	void Fire(){ NGUITools.SetActive (flames, false); }
-
+	void Fire(){ 
+		NGUITools.SetActive (fireEffect, false); 
+	}
 
 } // End TurretControl Class

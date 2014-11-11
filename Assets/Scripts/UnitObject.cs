@@ -18,6 +18,9 @@ public class UnitObject : MonoBehaviour {
 	// The UI Button which correlates to this unit (The Add Squad Button)...
 	public GameObject UnitButton;
 
+	public float speed = -1f;
+	private Vector3 lastPosition = Vector3.zero;
+
 	
 	void Update() {
 
@@ -37,6 +40,9 @@ public class UnitObject : MonoBehaviour {
 			UnitDPLabel.MarkAsChanged();
 
 		} // End if block
+
+		speed = gameObject.rigidbody2D.velocity.magnitude;
+
 
 	} // End Update()
 
@@ -84,7 +90,7 @@ public class UnitObject : MonoBehaviour {
 	 * @param hp - The amount of hp to take.
 	 * @param towerType - The type of tower dealing the damage.
 	 * */
-	public void TakeHit (int hp, string towerType) {
+	public void TakeHit (int hp, string towerType, TurretControl turretControl) {
 
 
 		// Flash the unit's button red on hit
@@ -94,13 +100,23 @@ public class UnitObject : MonoBehaviour {
 		// Push a notification to the console:
 		Console.Push ("Unit " + GameVars.UCFirst(Type) + " has been hit!");
 
-		// Decrease the unit's HP
-		HP -= hp;
-
+		Debug.Log(Type);
 		// We will use this for special abilities. ;)
 		switch(towerType) {
 
-			case "standard":
+			case "Flamethrower":
+
+
+
+				if(Type == "firefighter") {
+					Debug.Log ("HERE");
+					turretControl.RotationSpeed = 0;
+					turretControl.HitPercentage = 0;
+					turretControl.HPOnHit = 0;
+					turretControl.Range = 0;
+					turretControl.setTowerTint(new Color(.3f, .3f, .3f));
+				}
+
 				break;
 
 			default:
@@ -108,15 +124,22 @@ public class UnitObject : MonoBehaviour {
 
 		} // End switch
 
-		// Kill the unit if it's HP <= 0...
-		if(HP <= 0) KillUnit();
+		if(HP > 0) StartCoroutine(TakeHP(hp));
 	
 	} // End TakeHit()
 
 
 	IEnumerator ChangeLabelColorBack() {
-		yield return new WaitForSeconds(.3f);
+		yield return new WaitForSeconds(.1f);
 		GameObject.Find (UnitButton.name + "/UnitBKG").GetComponent<UISprite> ().color = Color.white;
 	}
+
+	IEnumerator TakeHP(int hp) {
+		yield return new WaitForSeconds(.2f);
+		HP -= hp;
+		// Kill the unit if it's HP <= 0...
+		if(HP <= 0) KillUnit();
+	}
+
 
 } // End UnitObject Class

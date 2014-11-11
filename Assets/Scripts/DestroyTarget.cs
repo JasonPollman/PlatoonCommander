@@ -1,24 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlowTheBridge : MonoBehaviour {
+public class DestroyTarget : MonoBehaviour {
+
+	public string winMessage = "The bridge has been destroyed!";
+	public string destroyedSpriteName = "BridgeDestroyed";
 
 	// The bridgeExplosion GameObject (container for explosions)
-	GameObject bridgeExplosion;
-
-	// The brige game object
-	GameObject bridge;
+	GameObject explosion;
 
 	// The message box for when the user wins
 	GameObject winBox;
 
 	// Use this for initialization
 	void Awake () {
-
-		// Grab what we need
-		bridgeExplosion = GameObject.Find ("BridgeExplosion");
-		bridge = GameObject.Find ("Bridge");
-
+		explosion = GameObject.Find ("Explosions");
 	} // End Awake()
 
 
@@ -38,8 +34,8 @@ public class BlowTheBridge : MonoBehaviour {
 
 		for(int i = 1; i < 6; i++) {
 			
-			NGUITools.SetActive(bridgeExplosion.transform.FindChild(i.ToString()).gameObject, true);
-			bridgeExplosion.transform.FindChild(i.ToString()).audio.Play ();
+			NGUITools.SetActive(explosion.transform.FindChild(i.ToString()).gameObject, true);
+			explosion.transform.FindChild(i.ToString()).audio.Play ();
 			yield return new WaitForSeconds(unit.GetComponent<move>().getAdjustedSpeed());
 
 			if(i == 5) StartCoroutine(StopExplosions());
@@ -54,15 +50,15 @@ public class BlowTheBridge : MonoBehaviour {
 		// Play Winning Sound...
 		audio.Play();
 
-		bridge.GetComponent<UISprite> ().spriteName = "BridgeDestroyed";
+		gameObject.GetComponent<UISprite> ().spriteName = destroyedSpriteName;
 		Console.Push ("Mission Successful!");
-		Console.Push ("The bridge has been destroyed");
+		Console.Push (winMessage);
 
 		// Set the Level as won, so we can pop-up the win box...
 		GameVars.LevelWon = true;
 
 		for(int i = 1; i < 6; i++) {
-			NGUITools.SetActive(bridgeExplosion.transform.FindChild(i.ToString()).gameObject, false);
+			NGUITools.SetActive(explosion.transform.FindChild(i.ToString()).gameObject, false);
 		}
 	} // End StopExplosions()
 
