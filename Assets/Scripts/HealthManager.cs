@@ -11,10 +11,13 @@ public class HealthManager : MonoBehaviour {
 	Vector2 unitPos;
 
 	private string hpPrint;
-
+	private string dpPrint;
+	public GUIStyle dpStyle;
+	public GUIStyle hpStyle;
 	// Use this for initialization
 	void Start () {
 		cam = transform.GetComponentInChildren<Camera>();
+
 	}
 	
 	void OnGUI(){
@@ -22,8 +25,10 @@ public class HealthManager : MonoBehaviour {
 			unitPos = cam.WorldToScreenPoint(unit.transform.position);
 			hp = unit.GetComponent("UnitObject") as UnitObject;
 			hpPrint = hp.HP.ToString();
+			dpPrint = hp.DP.ToString();
 			if(hp.Alive){
-				GUI.Label(new Rect(unitPos.x , Screen.height - unitPos.y, 100, 25), hpPrint);
+				GUI.Label(new Rect(unitPos.x + 3 , Screen.height - unitPos.y, 100, 25), hpPrint, hpStyle);
+				GUI.Label(new Rect(unitPos.x - 20, Screen.height - unitPos.y - 24, 100, 25), dpPrint, dpStyle);
 			}
 		}
 	}
