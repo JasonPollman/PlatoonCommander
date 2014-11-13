@@ -95,7 +95,7 @@ public class UnitButton : MonoBehaviour {
 	} // End Awake()
 
 
-	void OnClick () {
+	public bool OnClick () {
 
 		GameVars.UnitTypeClicked = UnitType.ToLower();
 
@@ -129,6 +129,10 @@ public class UnitButton : MonoBehaviour {
 		} // End if/else block
 
 		if(GameUnit != null) { // If a unit was added...
+
+			
+			if(GameObject.Find ("AddUnit" + ThisUnitSpot + "/HPLabel") != null) Destroy(GameObject.Find ("AddUnit" + ThisUnitSpot + "/HPLabel").gameObject);
+			if(GameObject.Find ("AddUnit" + ThisUnitSpot + "/DPLabel") != null) Destroy(GameObject.Find ("AddUnit" + ThisUnitSpot + "/DPLabel").gameObject);
 
 			// ---------------------- Change the + Button to the Unit Type ---------------------- //
 
@@ -178,7 +182,9 @@ public class UnitButton : MonoBehaviour {
 			// Add Unit Statistics for HP
 
 			GameObject UnitHPLabelObject = new GameObject();
-			Instantiate(UnitHPLabelObject);
+			UnitHPLabelObject.name = "HPLabel";
+			UnitHPLabelObject.tag = "hpLabel";
+
 			UnitHPLabel = UnitHPLabelObject.AddComponent<UILabel>();
 			UnitHPLabel.transform.parent = AddTileButton.transform;
 			UnitHPLabel.text = "HP: " + GameUnit.Type.HP;
@@ -192,14 +198,17 @@ public class UnitButton : MonoBehaviour {
 			
 			UnitHPLabel.MakePixelPerfect();
 			UnitHPLabel.MarkAsChanged();
-			
+
 			UnitHPLabel.transform.localPosition = new Vector3(34, 25, 0);
+			UnitHPLabel.transform.parent = GameObject.Find ("AddUnit" + ThisUnitSpot).gameObject.transform;
 
 
 			// Add Unit Statistics for DP
 
 			GameObject UnitDPLabelObject = new GameObject();
-			Instantiate(UnitDPLabelObject);
+			UnitDPLabelObject.name = "HPLabel";
+			UnitDPLabelObject.tag = "dpLabel";
+
 			UnitDPLabel = UnitDPLabelObject.AddComponent<UILabel>();
 			UnitDPLabel.transform.parent = AddTileButton.transform;
 			UnitDPLabel.text = "DP: " + GameUnit.Type.DP;
@@ -215,12 +224,16 @@ public class UnitButton : MonoBehaviour {
 			UnitDPLabel.MarkAsChanged();
 			
 			UnitDPLabel.transform.localPosition = new Vector3(34, 10, 0);
+			UnitDPLabel.transform.parent = GameObject.Find ("AddUnit" + ThisUnitSpot).gameObject.transform;
 
 
 		}
 
 		// Close the Add Unit Menu...
 		NGUITools.SetActive(AddUnitBox, false);
+
+		if(GameUnit == null) return false;
+		return true;
 
 	} // End OnClick()
 

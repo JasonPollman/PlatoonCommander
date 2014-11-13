@@ -35,6 +35,8 @@ public class GameVars : MonoBehaviour {
 		
 	};
 
+	public static string LastSquadKey = "Alpha";
+
 	// The maxium number of units a squad can have.
 	public static int SquadMaxUnits = 6;
 	
@@ -120,6 +122,8 @@ public class GameVars : MonoBehaviour {
 	 */
 	public static Unit AddUnitToSquad (string type, string squad, int buttonNum) {
 
+		Debug.Log (squad);
+
 		// Squad must be "alpha", "beta", or "omega"
 		if(!Squads.ContainsKey(squad.ToLower())) throw new UnityException("Unknown Squad");
 
@@ -133,6 +137,7 @@ public class GameVars : MonoBehaviour {
 			Unit NewUnit = new Unit (UnitTypes[type.ToLower()]);
 
 			// Set the squad position to this unit
+			Debug.Log (buttonNum);
 			Squads[squad.ToLower()][buttonNum - 1] = NewUnit;
 
 			// Decrement the number of units remaining for this type
@@ -199,6 +204,7 @@ public class GameVars : MonoBehaviour {
 		SquadsDeployed = new List<string>();
 		SpotFilled = new string[18];
 		SquadDeployClicked = null;
+		LastSquadKey = "Alpha";
 
 		Squads = new Dictionary<string, Unit[]> {
 			{ "alpha", new Unit[SquadMaxUnits] },
