@@ -51,6 +51,8 @@ public class DestroyTarget : MonoBehaviour {
 		audio.Play();
 
 		gameObject.GetComponent<UISprite> ().spriteName = destroyedSpriteName;
+		gameObject.GetComponent<UISprite> ().MakePixelPerfect ();
+		gameObject.GetComponent<UISprite> ().MarkAsChanged ();
 		Console.Push ("Mission Successful!");
 		Console.Push (winMessage);
 

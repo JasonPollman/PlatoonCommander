@@ -28,7 +28,7 @@ public class HealthManager : MonoBehaviour {
 			dpPrint = hp.DP.ToString();
 			if(hp.Alive){
 				GUI.Label(new Rect(unitPos.x + 3 , Screen.height - unitPos.y, 100, 25), hpPrint, hpStyle);
-				GUI.Label(new Rect(unitPos.x - 20, Screen.height - unitPos.y - 24, 100, 25), dpPrint, dpStyle);
+				GUI.Label(new Rect(unitPos.x - 15, Screen.height - unitPos.y - 15, 100, 25), dpPrint, dpStyle);
 			}
 		}
 	}

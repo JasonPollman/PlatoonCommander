@@ -46,10 +46,10 @@ public class TurretControl : MonoBehaviour {
 	public float Range;
 
 	// How many HP's a single hit will deal. Also for the future...
-	public int HPOnHit;
+	public int HPOnHit = 1;
 
 	// The tower's type
-	public string TowerType;
+	public string TowerType = "Machine Gunner";
 	public int TowerClass;
 
 	// Don't shoot while rotating!
@@ -74,10 +74,14 @@ public class TurretControl : MonoBehaviour {
 		NGUITools.SetActive (miss, false);
 		totalEnemies = enemyList.Length;
 		gameObject.transform.Find("Background").GetComponent<UISprite>().color = TurretColor;
-		InvokeRepeating("Shoot", 1, TimeBetweenShotsInSec);
-		InvokeRepeating("Fire", 1.1f, TimeBetweenShotsInSec);
+
 
 	} // End Start()
+
+	void Start () {
+		InvokeRepeating("Shoot", 1, TimeBetweenShotsInSec);
+		InvokeRepeating("Fire", 1.1f, TimeBetweenShotsInSec);
+	}
 
 	public void setTowerTint(Color color) {
 		gameObject.transform.Find("Background").GetComponent<UISprite>().color = color;
@@ -92,7 +96,7 @@ public class TurretControl : MonoBehaviour {
 			ProjectileType = "Bullets";
 			TurretColor = new Color (1, .85f, .6f);
 			TimeBetweenShotsInSec = 0.15f;
-			HitPercentage = 0.2f;
+			HitPercentage = 0.15f;
 			Range = 0.1f;
 			HPOnHit = 1;
 			sound = (AudioClip)Resources.Load ("MachineGun");
@@ -233,7 +237,7 @@ public class TurretControl : MonoBehaviour {
 	 * */
 	void Shoot(){
 
-		if(GameVars.LevelWon == false) {
+		if(GameVars.LevelWon == false && GameVars.PlayerReady) {
 			float rand = Random.Range(0f, 1f);
 
 			if(totalEnemies > 0 && enemy != null && inRange == true && RotationReady == true){
@@ -242,6 +246,7 @@ public class TurretControl : MonoBehaviour {
 				NGUITools.SetActive (fireEffect, true);
 
 				// Play the "boom" clip
+				audio.volume = .4f;
 				audio.PlayOneShot (sound);
 
 				if(rand <= HitPercentage) {

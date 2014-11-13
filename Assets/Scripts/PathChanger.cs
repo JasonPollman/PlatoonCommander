@@ -57,100 +57,58 @@ public class PathChanger : MonoBehaviour {
 	} // End Start()
 
 	
-	void OnTriggerStay2D(Collider2D other) {
-		
-		Debug.Log ("COLLLIDE");
-		Debug.Log (direction);
+	void OnTriggerEnter2D(Collider2D other) {
 		
 		GameObject soldier = other.gameObject;
-		Debug.Log (soldier.transform.rotation.eulerAngles.z);
+
 		if (soldier.tag != "unit") return;
+
+		Debug.Log (other.name);
 		
-		move     	move  = soldier.GetComponent<move>();
-		float    	speed = (float) move.speed;
-		Quaternion  defaultRotation = move.getDefaultRotation ();
+		StartCoroutine (TestCoroutine(soldier, soldier.transform.position));
 		
-		float sPosY = soldier.transform.position.y;
-		float sPosX = soldier.transform.position.x;
+	}
+	
+	
+	IEnumerator TestCoroutine(GameObject soldier, Vector3 startPos)
+	{
+		float speed = soldier.GetComponent<move> ().getSpeed ();
+		Quaternion defaultRotation = soldier.GetComponent<move> ().getDefaultRotation ();
 
-		float xDiff = Mathf.Abs((Mathf.Round (sPosX * 1000f) / 1000f) - (Mathf.Round (gameObject.GetComponent<BoxCollider2D> ().transform.position.x * 1000f) / 1000f));
-		float yDiff = Mathf.Abs((Mathf.Round (sPosY * 1000f) / 1000f) - (Mathf.Round (gameObject.GetComponent<BoxCollider2D> ().transform.position.y * 1000f) / 1000f));
+		Vector3 colPos = gameObject.transform.position;
 
-		Debug.Log (xDiff);
-		Debug.Log (yDiff);
+		Vector3 diff = colPos - startPos;
 
-		if((int) soldier.transform.rotation.eulerAngles.z == 270 || (int) soldier.transform.rotation.eulerAngles.z == 90) {
+		float rotation = soldier.transform.rotation.eulerAngles.z;
 
-			switch (direction) {
-			case "down":
-				if(xDiff <= .02f) {
-					soldier.transform.rotation = defaultRotation;
-					soldier.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-					soldier.rigidbody2D.velocity = new Vector2(0f, -1*speed);
-				}
-				break;
-			case "up":
-				//Debug.Log (sPosX.ToString() + " A");
-				if(xDiff <= .02f) {
-					//Debug.Log (sPosX.ToString() + "B");
-					soldier.transform.rotation = defaultRotation;
-					soldier.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-					soldier.rigidbody2D.velocity = new Vector2(0f, speed);
-				}
-				break;
-			case "left":
-				if(xDiff <= .02f) {
-					soldier.transform.rotation = defaultRotation;
-					soldier.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-					soldier.rigidbody2D.velocity = new Vector2(-1*speed, 0f);
-				}
-				break;
-			case "right":
-				if(xDiff <= .02f) {
-					soldier.transform.rotation = defaultRotation;
-					soldier.rigidbody2D.velocity = new Vector2(speed, 0f);
-				}
-				break;
-				
-			} // End switch block
-
+		if(rotation == 90 || rotation == 270) {
+			yield return new WaitForSeconds(Mathf.Abs(diff.x/speed));
 		}
 		else {
-
-			switch (direction) {
-			case "down":
-				if(yDiff <= .02f) {
-					soldier.transform.rotation = defaultRotation;
-					soldier.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-					soldier.rigidbody2D.velocity = new Vector2(0f, -1*speed);
-				}
-				break;
-			case "up":
-				if(yDiff <= .02f) {
-					soldier.transform.rotation = defaultRotation;
-					soldier.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-					soldier.rigidbody2D.velocity = new Vector2(0f, speed);
-				}
-				break;
-			case "left":
-				if(yDiff <= .02f) {
-					soldier.transform.rotation = defaultRotation;
-					soldier.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-					soldier.rigidbody2D.velocity = new Vector2(-1*speed, 0f);
-				}
-				break;
-			case "right":
-				if(yDiff <= .02f) {
-					soldier.transform.rotation = defaultRotation;
-					soldier.rigidbody2D.velocity = new Vector2(speed, 0f);
-				}
-				break;
-				
-			} // End switch block
+			yield return new WaitForSeconds(Mathf.Abs(diff.y/speed));
 		}
 
-
-		
-	} // End OnTriggerEnter2D
+		switch (direction) {
+		case "down":
+			soldier.transform.rotation = defaultRotation;
+			soldier.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+			soldier.rigidbody2D.velocity = new Vector2(0f, -1*speed);
+			break;
+		case "up":
+			soldier.transform.rotation = defaultRotation;
+			soldier.transform.rotation = Quaternion.Euler(0f, 0f, 5f);
+			soldier.rigidbody2D.velocity = new Vector2(0f, speed);
+			break;
+		case "left":
+			soldier.transform.rotation = defaultRotation;
+			soldier.transform.rotation = Quaternion.Euler(0f, 0f, 100f);
+			soldier.rigidbody2D.velocity = new Vector2(-1*speed, 0f);
+			break;
+		case "right":
+			soldier.transform.rotation = defaultRotation;
+			soldier.rigidbody2D.velocity = new Vector2(speed, 0f);
+			break;
+		}
+	}
 	
 }
