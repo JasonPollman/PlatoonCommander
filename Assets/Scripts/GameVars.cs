@@ -84,6 +84,8 @@ public class GameVars : MonoBehaviour {
 	// The Deploy Button Clicked
 	public static DeployButton SquadDeployClicked = null;
 
+	public static bool Stop = false;
+
 	// Get the box number that the user clicked on to add a unit.
 	public static int UnitNumberClicked {
 
@@ -122,8 +124,6 @@ public class GameVars : MonoBehaviour {
 	 */
 	public static Unit AddUnitToSquad (string type, string squad, int buttonNum) {
 
-		Debug.Log (squad);
-
 		// Squad must be "alpha", "beta", or "omega"
 		if(!Squads.ContainsKey(squad.ToLower())) throw new UnityException("Unknown Squad");
 
@@ -137,7 +137,6 @@ public class GameVars : MonoBehaviour {
 			Unit NewUnit = new Unit (UnitTypes[type.ToLower()]);
 
 			// Set the squad position to this unit
-			Debug.Log (buttonNum);
 			Squads[squad.ToLower()][buttonNum - 1] = NewUnit;
 
 			// Decrement the number of units remaining for this type
@@ -205,6 +204,7 @@ public class GameVars : MonoBehaviour {
 		SpotFilled = new string[18];
 		SquadDeployClicked = null;
 		LastSquadKey = "Alpha";
+		Stop = false;
 
 		Squads = new Dictionary<string, Unit[]> {
 			{ "alpha", new Unit[SquadMaxUnits] },

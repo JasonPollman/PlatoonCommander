@@ -121,7 +121,7 @@ public class LevelConfig : MonoBehaviour {
 
 			foreach(KeyValuePair<string, Unit[]> x in GameVars.Squads) {
 				foreach(Unit u in x.Value) {
-					if(u != null && u.GameObj && u.GameObj.GetComponent<UnitObject>().Alive == true) {
+					if(u != null && u.GameObj && u.GameObj.GetComponent<UnitObject>().Alive == true && (u.GameObj.rigidbody2D.velocity != Vector2.zero || GameVars.Stop == true)) {
 						gameO = false;
 					}
 				}
@@ -141,7 +141,6 @@ public class LevelConfig : MonoBehaviour {
 		if(GameVars.PlayerReady == true) {
 
 			if(GameTimer.TimeRemaining <= 0) {
-				GameVars.PlayerReady = false;
 				GameVars.GameOverReason = "Mission Failed: Time is up!";
 				StartCoroutine(DeathNextLevel());
 				GameVars.GameInPlay = false;

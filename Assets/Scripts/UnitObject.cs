@@ -43,7 +43,6 @@ public class UnitObject : MonoBehaviour {
 
 		speed = gameObject.rigidbody2D.velocity.magnitude;
 
-
 	} // End Update()
 
 

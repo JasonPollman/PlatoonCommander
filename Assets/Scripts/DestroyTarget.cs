@@ -23,6 +23,7 @@ public class DestroyTarget : MonoBehaviour {
 		if(unit.gameObject.Equals(GameVars.BomberUnit.GameObj)) { // The bomber has crossed the bridge
 			StartCoroutine(Explode(unit.gameObject));
 			GameVars.GameInPlay = false;
+			GameVars.Stop = true;
 
 			// Stop Level Audio
 			GameObject.Find ("UI Root (2D)").audio.Stop();

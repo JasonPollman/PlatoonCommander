@@ -226,11 +226,13 @@ public class UnitButton : MonoBehaviour {
 			UnitDPLabel.transform.localPosition = new Vector3(34, 10, 0);
 			UnitDPLabel.transform.parent = GameObject.Find ("AddUnit" + ThisUnitSpot).gameObject.transform;
 
+			if(GameVars.UnitNumberClicked % 6 == 0) {
+				NGUITools.SetActive(AddUnitBox, false);
+			}
+
+			GameVars.UnitNumberClicked++;
 
 		}
-
-		// Close the Add Unit Menu...
-		NGUITools.SetActive(AddUnitBox, false);
 
 		if(GameUnit == null) return false;
 		return true;

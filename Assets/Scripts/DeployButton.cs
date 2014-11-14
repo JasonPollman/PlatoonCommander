@@ -21,10 +21,17 @@ public class DeployButton : MonoBehaviour {
 		selectText = GameObject.Find ("SelectPath");
 	}
 
+	void Update () {
+		// If the game isn't in play don't let users add units to squads (e.g. disable the buttons)
+		if(GameVars.GameInPlay == false) {
+			gameObject.GetComponent<UIImageButton>().isEnabled = false;
+		}
+	}
+
 
 	void OnClick () {
 
-		if (UICamera.currentTouchID == -1 && GameVars.Squads[squadName].Length > 0) { // Only on a left-click & must have units in squad to deploy...
+		if (GameVars.PlayerReady && UICamera.currentTouchID == -1 && GameVars.Squads[squadName].Length > 0) { // Only on a left-click & must have units in squad to deploy...
 
 			// Set the squad clicked to the squadName
 			GameVars.SquadDeployClicked = this;

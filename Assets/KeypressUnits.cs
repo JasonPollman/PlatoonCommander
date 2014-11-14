@@ -59,7 +59,6 @@ public class KeypressUnits : MonoBehaviour {
 				case "1":
 					setup();
 					if(ubScript1.OnClick()) {
-						GameVars.UnitNumberClicked += 1;
 						src.clip = OriginalClip;
 					}
 					else {
@@ -70,7 +69,6 @@ public class KeypressUnits : MonoBehaviour {
 				case "2":
 					setup();
 					if(ubScript2.OnClick()) {
-						GameVars.UnitNumberClicked += 1;
 						src.clip = OriginalClip;
 					}
 					else {
@@ -81,7 +79,6 @@ public class KeypressUnits : MonoBehaviour {
 				case "3":
 					setup();
 					if(ubScript3.OnClick()) {
-						GameVars.UnitNumberClicked += 1;
 						src.clip = OriginalClip;
 					}
 					else {
@@ -92,7 +89,6 @@ public class KeypressUnits : MonoBehaviour {
 				case "4":
 					setup();
 					if(ubScript4.OnClick()) {
-						GameVars.UnitNumberClicked += 1;
 						src.clip = OriginalClip;
 					}
 					else {
@@ -103,7 +99,6 @@ public class KeypressUnits : MonoBehaviour {
 				case "5":
 					setup();
 					if(ubScript5.OnClick()) {
-						GameVars.UnitNumberClicked += 1;
 						src.clip = OriginalClip;
 					}
 					else {
@@ -114,7 +109,6 @@ public class KeypressUnits : MonoBehaviour {
 				case "6":
 					setup();
 					if(ubScript6.OnClick()) {
-						GameVars.UnitNumberClicked += 1;
 						src.clip = OriginalClip;
 					}
 					else {
@@ -133,12 +127,10 @@ public class KeypressUnits : MonoBehaviour {
 
 	void setup() {
 
-		Debug.Log (oldSquad + "JASON");
-
 		if(GameVars.UnitNumberClicked == -1) GameVars.UnitNumberClicked = 1;
 
 		if(oldSquad.ToLower() != GameVars.LastSquadKey.ToLower()) {
-			Debug.Log ("HJERE");
+
 			switch(GameVars.LastSquadKey.ToLower()) {
 			case "alpha":
 				GameVars.UnitNumberClicked = 1;

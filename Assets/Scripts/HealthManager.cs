@@ -24,9 +24,11 @@ public class HealthManager : MonoBehaviour {
 		foreach(GameObject unit in Units) {
 			unitPos = cam.WorldToScreenPoint(unit.transform.position);
 			hp = unit.GetComponent("UnitObject") as UnitObject;
-			hpPrint = hp.HP.ToString();
-			dpPrint = hp.DP.ToString();
-			if(hp.Alive){
+			if(hp) {
+				hpPrint = hp.HP.ToString();
+				dpPrint = hp.DP.ToString();
+			}
+			if(hp && hp.Alive){
 				GUI.Label(new Rect(unitPos.x + 3 , Screen.height - unitPos.y, 100, 25), hpPrint, hpStyle);
 				GUI.Label(new Rect(unitPos.x - 15, Screen.height - unitPos.y - 15, 100, 25), dpPrint, dpStyle);
 			}
